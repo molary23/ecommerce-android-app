@@ -12,4 +12,18 @@
     <string name="thanks">Thanks</string>
     <string name="shopping_thanks">Thank you for shopping with us.</string>
     <string name="shopping_shipping">Your order will be shipped in 2 - 5 days</string>
+    <string name="brand_motto">Shopping made seamless</string>
+    <string name="product_name">Product Name</string>
+    <string name="product_price">$50.99</string>
+    <string name="description_title">DESCRIPTION</string>
+    <string name="lorem">lorem ipsum dolor sit amet d Lorem ipsum dolor sit amet d Lore lorem ips sum dolor sit amet d Lorem lorem ipsum dolor sit amet d</string>
+    <string name="payment">PAYMENT</string>
+    <string name="card_number">CARD DETAILS</string>
+    <string name="dummy_card">4123 3456 5467 3452</string>
+    <string name="expiry">EXPIRY</string>
+    <string name="secure_code">SECURE CODE</string>
+    <string name="mm">MM</string>
+    <string name="forward_slash">/</string>
+    <string name="yy">YY</string>
+    <string name="cvv">CVV</string>
 </resources>
