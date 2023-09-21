@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Mattire</string>
+    <string name="placeholder_password">Enter your password</string>
+    <string name="placeholder_username">Enter your email address or Username</string>
+    <string name="login_title">Login</string>
+    <string name="new_here">New here?</string>
+    <string name="register_title">Register</string>
+    <string name="placeholder_email">Enter your Email Address</string>
+    <string name="placeholder_confirm">Confirm your password</string>
+    <string name="member_already">Already a member?</string>
+    <string name="placeholder_phone">Enter your phone number</string>
+    <string name="thanks">Thanks</string>
+    <string name="shopping_thanks">Thank you for shopping with us.</string>
+    <string name="shopping_shipping">Your order will be shipped in 2 - 5 days</string>
+</resources>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="xxs">0dp</dimen>
+    <dimen name="xs">4dp</dimen>
+    <dimen name="sm">12dp</dimen>
+    <dimen name="md">24dp</dimen>
+    <dimen name="lg">40dp</dimen>
+    <dimen name="xl">64dp</dimen>
+    <dimen name="xxl">80dp</dimen>
+    <dimen name="min">200dp</dimen>
+    <dimen name="mid">300dp</dimen>
+    <dimen name="max">400dp</dimen>
+
+</resources>
