@@ -1,4 +1,4 @@
-package com.hassanadeola.mattire.views;
+package com.hassanadeola.mattire.controllers;
 
 import androidx.appcompat.app.AppCompatActivity;
 

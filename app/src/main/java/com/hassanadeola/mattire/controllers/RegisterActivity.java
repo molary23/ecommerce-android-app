@@ -1,4 +1,4 @@
-package com.hassanadeola.mattire.views;
+package com.hassanadeola.mattire.controllers;
 
 import static com.hassanadeola.mattire.Utils.navigate;
 

@@ -1,4 +1,4 @@
-package com.hassanadeola.mattire.views;
+package com.hassanadeola.mattire.controllers;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.hassanadeola.mattire.R;
 
-public class DetailsActivity extends AppCompatActivity {
+public class ProductActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_details);
+        setContentView(R.layout.activity_product);
     }
 }

@@ -11,7 +11,7 @@
     <string name="placeholder_phone">Enter your phone number</string>
     <string name="thanks">Thanks</string>
     <string name="shopping_thanks">Thank you for shopping with us.</string>
-    <string name="shopping_shipping">Your order will be shipped in 2 - 5 days</string>
+    <string name="shopping_shipping">Your order will be shipped in 2 – 5 days</string>
     <string name="brand_motto">Shopping made seamless</string>
     <string name="product_name">Product Name</string>
     <string name="product_price">$50.99</string>
@@ -26,4 +26,11 @@
     <string name="forward_slash">/</string>
     <string name="yy">YY</string>
     <string name="cvv">CVV</string>
+    <string name="pay">Pay</string>
+    <string name="tax">Tax</string>
+    <string name="total">Total</string>
+    <string name="subtotal">SubTotal</string>
+    <string name="quantity">Quantity</string>
+    <string name="qty">5</string>
+    <string name="in_stock">In Stock</string>
 </resources>

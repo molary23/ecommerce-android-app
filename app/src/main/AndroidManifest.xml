@@ -13,22 +13,34 @@
         android:theme="@style/Theme.Mattire"
         tools:targetApi="31">
         <activity
-            android:name=".views.CheckoutActivity"
+            android:name=".controllers.SettingsActivity"
             android:exported="false" />
         <activity
-            android:name=".views.DetailsActivity"
+            android:name=".controllers.SearchActivity"
             android:exported="false" />
         <activity
-            android:name=".views.LaunchActivity"
+            android:name=".controllers.ProductActivity"
             android:exported="false" />
         <activity
-            android:name=".views.ConfirmationActivity"
+            android:name=".controllers.CartActivity"
             android:exported="false" />
         <activity
-            android:name=".views.RegisterActivity"
+            android:name=".controllers.CheckoutActivity"
             android:exported="false" />
         <activity
-            android:name=".views.LoginActivity"
+            android:name=".controllers.DetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".controllers.LaunchActivity"
+            android:exported="false" />
+        <activity
+            android:name=".controllers.ConfirmationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".controllers.RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".controllers.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,7 +49,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".views.MainActivity"
+            android:name=".controllers.MainActivity"
             android:configChanges="uiMode"
             android:exported="false"
             android:forceDarkAllowed="true"

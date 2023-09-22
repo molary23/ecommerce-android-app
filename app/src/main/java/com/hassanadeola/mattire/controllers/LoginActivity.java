@@ -1,4 +1,4 @@
-package com.hassanadeola.mattire.views;
+package com.hassanadeola.mattire.controllers;
 
 import static com.hassanadeola.mattire.Utils.*;
 
@@ -11,9 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.google.android.material.textview.MaterialTextView;
 import com.hassanadeola.mattire.R;
-import com.hassanadeola.mattire.Utils;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -38,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void navigateToRegister() {
-      startActivity(navigate(this, RegisterActivity.class));
+      startActivity(navigate(this, CheckoutActivity.class));
     }
 
     public void login(){
