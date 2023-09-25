@@ -82,7 +82,8 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/tf_username"
                             android:layout_width="match_parent"
-                            android:layout_height="50dp" />
+                            android:layout_height="50dp"
+                            android:drawableRight="@drawable/baseline_person_pin_24"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -96,7 +97,8 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/tf_email"
                             android:layout_width="match_parent"
-                            android:layout_height="50dp" />
+                            android:layout_height="50dp"
+                            android:drawableRight="@drawable/baseline_email_24"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -110,7 +112,8 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/tf_phone"
                             android:layout_width="match_parent"
-                            android:layout_height="50dp" />
+                            android:layout_height="50dp"
+                            android:drawableRight="@drawable/baseline_local_phone_24"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -127,7 +130,8 @@
                             android:id="@+id/tf_password"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
-                            android:inputType="textPassword" />
+                            android:inputType="textPassword"
+                            />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -145,7 +149,8 @@
                             android:id="@+id/tf_confirm_password"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
-                            android:inputType="textPassword" />
+                            android:inputType="textPassword"
+                           />
 
                     </com.google.android.material.textfield.TextInputLayout>
 

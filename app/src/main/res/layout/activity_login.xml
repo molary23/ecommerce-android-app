@@ -84,7 +84,8 @@
                             android:id="@+id/tf_username"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
-                            android:inputType="textEmailAddress" />
+                            android:inputType="textEmailAddress"
+                            android:drawableRight="@drawable/baseline_email_24"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -101,7 +102,8 @@
                             android:id="@+id/tf_password"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
-                            android:inputType="textPassword" />
+                            android:inputType="textPassword"
+                          />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
