@@ -1,8 +1,36 @@
 package com.hassanadeola.mattire.models;
 
+import java.time.LocalDateTime;
+import java.util.Calendar;
+
 public class Users {
 
-    private String username, email, password, phone;
+    private String username, email, phone, token;
+    Long createdAt, updatedAt;
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public Long getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Long createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Long getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Long updatedAt) {
+        this.updatedAt = updatedAt;
+    }
 
     public String getUsername() {
         return username;
@@ -20,14 +48,6 @@ public class Users {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getPhone() {
         return phone;
     }
@@ -39,10 +59,13 @@ public class Users {
     public Users() {
     }
 
-    public Users(String username, String email, String password, String phone) {
+
+
+    public Users(String username, String email, String phone, String token) {
         this.username = username;
         this.email = email;
-        this.password = password;
         this.phone = phone;
+        this.token = token;
+        this.createdAt = Calendar.getInstance().getTimeInMillis();
     }
 }

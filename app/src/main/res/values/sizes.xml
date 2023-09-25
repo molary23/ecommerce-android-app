@@ -10,5 +10,4 @@
     <dimen name="min">200dp</dimen>
     <dimen name="mid">300dp</dimen>
     <dimen name="max">400dp</dimen>
-
 </resources>

@@ -14,40 +14,50 @@
         tools:targetApi="31">
         <activity
             android:name=".controllers.SettingsActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Settings"/>
         <activity
             android:name=".controllers.SearchActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Search Products"/>
         <activity
             android:name=".controllers.ProductActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Products"/>
         <activity
             android:name=".controllers.CartActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Cart"/>
         <activity
             android:name=".controllers.CheckoutActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Checkout"/>
         <activity
             android:name=".controllers.DetailsActivity"
             android:exported="false" />
         <activity
             android:name=".controllers.LaunchActivity"
-            android:exported="false" />
-        <activity
-            android:name=".controllers.ConfirmationActivity"
-            android:exported="false" />
-        <activity
-            android:name=".controllers.RegisterActivity"
-            android:exported="false" />
-        <activity
-            android:name=".controllers.LoginActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.Material3.DayNight.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".controllers.ConfirmationActivity"
+            android:exported="false"
+            android:label="Order Confirmation"/>
+        <activity
+            android:name=".controllers.RegisterActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Material3.DayNight.NoActionBar"/>
+        <activity
+            android:name=".controllers.LoginActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Material3.DayNight.NoActionBar"/>
+
         <activity
             android:name=".controllers.MainActivity"
             android:configChanges="uiMode"

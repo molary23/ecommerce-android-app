@@ -6,6 +6,7 @@
     <string name="new_here">New here?</string>
     <string name="register_title">Register</string>
     <string name="placeholder_email">Enter your Email Address</string>
+    <string name="placeholder_username_only">Enter your Username</string>
     <string name="placeholder_confirm">Confirm your password</string>
     <string name="member_already">Already a member?</string>
     <string name="placeholder_phone">Enter your phone number</string>
@@ -33,4 +34,5 @@
     <string name="quantity">Quantity</string>
     <string name="qty">5</string>
     <string name="in_stock">In Stock</string>
+    <string name="recommended">RECOMMENDED</string>
 </resources>

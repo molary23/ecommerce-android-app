@@ -1,16 +1,27 @@
 package com.hassanadeola.mattire.models;
 
-public class Products {
+import java.io.Serializable;
 
-    private String name, description;
+public class Products implements Serializable {
+
+    private String name, description, image;
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     private double price, rating;
 
-    public Products(String name, String description, double price, double rating) {
+    public Products(String name, String description, double price, double rating, String image) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.rating = rating;
+        this.image = image;
     }
 
     public Products() {
