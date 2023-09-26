@@ -14,7 +14,7 @@ import androidx.appcompat.app.AlertDialog;
 public class Utils {
 
 
-    public static void navigate(Context context, Class<?> activityClass) {
+    public static void navigateToView(Context context, Class<?> activityClass) {
         Intent intent = new Intent(context, activityClass);
         context.startActivity(intent);
     }

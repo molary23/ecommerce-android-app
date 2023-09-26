@@ -35,4 +35,6 @@
     <string name="qty">5</string>
     <string name="in_stock">In Stock</string>
     <string name="recommended">RECOMMENDED</string>
+    <string name="best_seller">BEST SELLER</string>
+    <string name="deals">DEALS</string>
 </resources>

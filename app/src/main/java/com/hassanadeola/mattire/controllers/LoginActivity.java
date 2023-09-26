@@ -46,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void navigateToRegister() {
-        navigate(this, RegisterActivity.class);
+        navigateToView(this, RegisterActivity.class);
     }
 
     public void login() {

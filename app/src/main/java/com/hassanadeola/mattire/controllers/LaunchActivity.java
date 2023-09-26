@@ -1,7 +1,7 @@
 package com.hassanadeola.mattire.controllers;
 
 import static android.content.ContentValues.TAG;
-import static com.hassanadeola.mattire.utils.Utils.navigate;
+import static com.hassanadeola.mattire.utils.Utils.navigateToView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -42,7 +42,7 @@ public class LaunchActivity extends AppCompatActivity {
         if(firebase.isUserLoggedIn()){
             authClass = ProductActivity.class;
         }
-        navigate(this, authClass);
+        navigateToView(this, authClass);
     }
 
 

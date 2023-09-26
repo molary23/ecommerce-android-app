@@ -13,17 +13,18 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/imageCard"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/xs"
         app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="50dp"
+        app:cardCornerRadius="75dp"
         app:cardElevation="@dimen/xs"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:strokeColor="@android:color/transparent">
+        app:strokeColor="@color/white">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/product_image"
@@ -35,20 +36,22 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/product_name"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
             android:text="@string/product_name"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="@dimen/xs"
+            android:layout_marginTop="@dimen/xs"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/product_price"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="78dp"
+
             android:gravity="center"
             android:text="@string/product_price"
             android:textSize="20sp"

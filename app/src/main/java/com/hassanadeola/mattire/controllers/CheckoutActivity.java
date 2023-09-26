@@ -24,16 +24,16 @@ public class CheckoutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
 
-        card_number = (EditText) findViewById(R.id.card_number);
-        month = (EditText) findViewById(R.id.month);
-        year = (EditText) findViewById(R.id.year);
-        cvv = (EditText) findViewById(R.id.cvv);
+        card_number = findViewById(R.id.card_number);
+        month =  findViewById(R.id.month);
+        year =  findViewById(R.id.year);
+        cvv =  findViewById(R.id.cvv);
 
-        btn_pay = (Button) findViewById(R.id.btn_pay);
+        btn_pay =  findViewById(R.id.btn_pay);
 
-        ln_subTotal = (LinearLayout) findViewById(R.id.subTotal);
-        ln_tax = (LinearLayout) findViewById(R.id.tax);
-        ln_total = (LinearLayout) findViewById(R.id.total);
+        ln_subTotal =  findViewById(R.id.subTotal);
+        ln_tax =  findViewById(R.id.tax);
+        ln_total =  findViewById(R.id.total);
 
 
         mt_subTotal_amount = ln_subTotal.findViewById(R.id.amount);

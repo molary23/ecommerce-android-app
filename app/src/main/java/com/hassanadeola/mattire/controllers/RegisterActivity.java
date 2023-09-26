@@ -1,7 +1,7 @@
 package com.hassanadeola.mattire.controllers;
 
 import static com.hassanadeola.mattire.utils.Utils.createAlertDialog;
-import static com.hassanadeola.mattire.utils.Utils.navigate;
+import static com.hassanadeola.mattire.utils.Utils.navigateToView;
 import static com.hassanadeola.mattire.utils.Utils.validateUserInput;
 
 import androidx.appcompat.app.AlertDialog;
@@ -50,7 +50,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void navigateToLogin() {
-        navigate(this, LoginActivity.class);
+        navigateToView(this, LoginActivity.class);
     }
 
     private void register() {

@@ -86,7 +86,7 @@ public class Firebase {
                             FirebaseUser user = firebaseAuth.getCurrentUser();
                             if (user != null) {
                                 saveUser(user.getUid(), username, email, phone);
-                                navigate(context, ProductActivity.class);
+                                navigateToView(context, ProductActivity.class);
                                 ((Activity) context).finish();
                             }
                         } else {
@@ -110,7 +110,7 @@ public class Firebase {
                                 setSharedPreferences(context,"USERID", user.getUid());
                               /*  editor.putString("USERID", user.getUid());
                                 editor.apply();*/
-                                navigate(context, ProductActivity.class);
+                                navigateToView(context, ProductActivity.class);
                                 ((Activity) context).finish();
                             }
                         } else {
