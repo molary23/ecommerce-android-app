@@ -3,7 +3,6 @@ package com.hassanadeola.mattire.controllers;
 import static com.hassanadeola.mattire.utils.Utils.*;
 
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,32 +12,34 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.google.android.material.textview.MaterialTextView;
 import com.hassanadeola.mattire.R;
 import com.hassanadeola.mattire.models.Firebase;
 import com.hassanadeola.mattire.utils.Utils;
 
 public class LoginActivity extends AppCompatActivity {
 
-    Button btn_login, btn_register;
+    Button btn_login;
     EditText tf_username, tf_password;
     private FrameLayout progressBar;
+    MaterialTextView txt_register;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
 
-        btn_login = (Button) findViewById(R.id.btn_login);
-        btn_register = (Button) findViewById(R.id.btn_register);
+        btn_login =  findViewById(R.id.btn_login);
+        txt_register =  findViewById(R.id.txt_register);
 
-        tf_username = (EditText) findViewById(R.id.tf_username);
-        tf_password = (EditText) findViewById(R.id.tf_password);
+        tf_username =  findViewById(R.id.tf_username);
+        tf_password =  findViewById(R.id.tf_password);
 
         progressBar = findViewById(R.id.progressBar);
 
-        btn_register.setOnClickListener((View view) -> navigateToRegister());
+        txt_register.setOnClickListener((View view) -> navigateToRegister());
+
+
 
         btn_login.setOnClickListener((View view) -> login());
 
@@ -63,6 +64,7 @@ public class LoginActivity extends AppCompatActivity {
             builder.show();
         }
     }
+
 
 
 }
