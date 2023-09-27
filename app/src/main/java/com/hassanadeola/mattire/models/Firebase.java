@@ -30,6 +30,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.hassanadeola.mattire.controllers.LoginActivity;
 import com.hassanadeola.mattire.controllers.ProductActivity;
 import com.hassanadeola.mattire.utils.Utils;
 
@@ -151,6 +152,8 @@ public class Firebase {
         editor.apply();*/
         removeSharedPreferences(context, "USERID");
         firebaseAuth.signOut();
+        navigateToView(context, LoginActivity.class);
+        ((Activity) context).finish();
 
     }
 

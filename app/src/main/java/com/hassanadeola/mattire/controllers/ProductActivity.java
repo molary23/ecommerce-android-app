@@ -6,7 +6,6 @@ import static com.hassanadeola.mattire.utils.Utils.toggleDisable;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,28 +23,28 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.textview.MaterialTextView;
 import com.hassanadeola.mattire.R;
-import com.hassanadeola.mattire.adapter.CustomAdapter;
+import com.hassanadeola.mattire.adapter.BestAdapter;
+import com.hassanadeola.mattire.adapter.DealAdapter;
+import com.hassanadeola.mattire.adapter.RecommendedAdapter;
 import com.hassanadeola.mattire.api.RequestManager;
 import com.hassanadeola.mattire.listeners.OnFetchDataListener;
 import com.hassanadeola.mattire.listeners.ProductListener;
-import com.hassanadeola.mattire.models.Firebase;
 import com.hassanadeola.mattire.models.Products;
 import com.hassanadeola.mattire.utils.CountDrawable;
 import com.hassanadeola.mattire.utils.Section;
 
 import java.util.List;
 
-public class ProductActivity extends AppCompatActivity implements ProductListener, View.OnClickListener {
+public class ProductActivity extends AppCompatActivity implements ProductListener {
     Button btn_logout;
 
     RecyclerView recommendedRecyclerView, bestRecyclerView, dealRecyclerView;
-    CustomAdapter adapter;
+    RecommendedAdapter recommendedAdapter;
+    BestAdapter bestAdapter;
+    DealAdapter dealAdapter;
 
     LinearLayout rootView;
 
@@ -56,47 +55,43 @@ public class ProductActivity extends AppCompatActivity implements ProductListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product);
 
-        btn_logout = findViewById(R.id.btn_logout);
+        btn_logout = findViewById(R.id.btn_search);
         rootView = findViewById(R.id.rootView);
         progressBar = findViewById(R.id.progressBar);
-        btn_logout.setOnClickListener((View view) -> logout());
+        btn_logout.setOnClickListener((View view) -> goToSearch());
 
-        toggleDisable(true, progressBar, getWindow());
+        //   toggleDisable(true, progressBar, getWindow());
 
         RequestManager requestManager = new RequestManager(this);
-        requestManager.getProductLists(recommendedListener, 0, 5);
-      //  requestManager.getProductLists(recommendedListener, 1, 10, Section.BEST);
-     //   requestManager.getProductLists(recommendedListener, 2, 10, Section.DEALS);
-        //   requestManager.getProductLists(bestListener, 1, 10);
-        //   requestManager.getProductLists(dealListener, 2, 10);
+        requestManager.getProductLists(listener, 0, 5, Section.RECOMMENDED);
+        requestManager.getProductLists(listener, 1, 10, Section.BEST);
+        requestManager.getProductLists(listener, 2, 10, Section.DEALS);
+
     }
 
 
-    public void logout() {
-        Firebase firebase = new Firebase(this);
-        firebase.logout();
-        navigateToView(this, LoginActivity.class);
+    public void goToSearch() {
+        navigateToView(this, SearchActivity.class);
     }
 
-    private final OnFetchDataListener<Products> recommendedListener =
+    private final OnFetchDataListener<Products> listener =
             new OnFetchDataListener<Products>() {
                 @Override
-                public void onFetchData(List<Products> list, String message) {
+                public void onFetchData(List<Products> list, String message, Section section) {
                     if (list.isEmpty()) {
                         Toast.makeText(ProductActivity.this, "Data not available",
                                 Toast.LENGTH_SHORT).show();
                         toggleDisable(false, progressBar, getWindow());
                     } else {
-                       /* if (section == Section.RECOMMENDED) {
-                            showRecommendedProducts(list);
-                        } else if (section == Section.BEST) {
-                            showRecommendedProducts(list);
-                        } else {
+                        if (section == Section.BEST) {
+                            showBestProducts(list);
+                        } else if (section == Section.DEALS) {
                             showDealProducts(list);
-                        }*/
-                        showRecommendedProducts(list);
-                        toggleDisable(false, progressBar, getWindow());
+                        } else if (section == Section.RECOMMENDED) {
+                            showRecommendedProducts(list);
+                        }
 
+                        toggleDisable(false, progressBar, getWindow());
                     }
                 }
 
@@ -107,52 +102,6 @@ public class ProductActivity extends AppCompatActivity implements ProductListene
                     toggleDisable(false, progressBar, getWindow());
                 }
             };
-/*
-    private final OnFetchDataListener<Products> bestListener =
-            new OnFetchDataListener<Products>() {
-                @Override
-                public void onFetchData(List<Products> list, String message) {
-                    if (list.isEmpty()) {
-                        Toast.makeText(ProductActivity.this, "Data not available",
-                                Toast.LENGTH_SHORT).show();
-                        toggleDisable(false, progressBar, getWindow());
-                    } else {
-                        showBestProducts(list);
-                        toggleDisable(false, progressBar, getWindow());
-
-                    }
-                }
-
-                @Override
-                public void onError(String message) {
-                    Toast.makeText(ProductActivity.this, "Error Occurred: " + message,
-                            Toast.LENGTH_SHORT).show();
-                }
-            };
-
-    private final OnFetchDataListener<Products> dealListener =
-            new OnFetchDataListener<Products>() {
-                @Override
-                public void onFetchData(List<Products> list, String message) {
-                    if (list.isEmpty()) {
-                        Toast.makeText(ProductActivity.this, "Data not available",
-                                Toast.LENGTH_SHORT).show();
-                        toggleDisable(false, progressBar, getWindow());
-                    } else {
-                        showDealProducts(list);
-                        toggleDisable(false, progressBar, getWindow());
-
-                    }
-                }
-
-                @Override
-                public void onError(String message) {
-                    Toast.makeText(ProductActivity.this, "Error Occurred: " + message,
-                            Toast.LENGTH_SHORT).show();
-                }
-            };
-            */
-
 
     private void showRecommendedProducts(List<Products> list) {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this,
@@ -160,11 +109,9 @@ public class ProductActivity extends AppCompatActivity implements ProductListene
         recommendedRecyclerView = findViewById(R.id.recommendedRecyclerView);
         recommendedRecyclerView.setHasFixedSize(true);
         recommendedRecyclerView.setLayoutManager(layoutManager);
-        adapter = new CustomAdapter(this, list, this, Section.RECOMMENDED);
-        recommendedRecyclerView.setAdapter(adapter);
-
-
-    }
+        recommendedAdapter = new RecommendedAdapter(this, list, this);
+        recommendedRecyclerView.setAdapter(recommendedAdapter);
+            }
 
 
     private void showBestProducts(List<Products> list) {
@@ -173,8 +120,8 @@ public class ProductActivity extends AppCompatActivity implements ProductListene
         bestRecyclerView = findViewById(R.id.bestRecyclerView);
         bestRecyclerView.setHasFixedSize(true);
         bestRecyclerView.setLayoutManager(layoutManager);
-        adapter = new CustomAdapter(this, list, this, Section.BEST);
-        bestRecyclerView.setAdapter(adapter);
+        bestAdapter = new BestAdapter(this, list, this);
+        bestRecyclerView.setAdapter(bestAdapter);
     }
 
     private void showDealProducts(List<Products> list) {
@@ -182,16 +129,9 @@ public class ProductActivity extends AppCompatActivity implements ProductListene
         dealRecyclerView = findViewById(R.id.dealRecyclerView);
         dealRecyclerView.setHasFixedSize(true);
         dealRecyclerView.setLayoutManager(gridLayoutManager);
-        adapter = new CustomAdapter(this, list, this, Section.DEALS);
-        dealRecyclerView.setAdapter(adapter);
-
-
-    }
-
-    @Override
-    public void onClick(View view) {
-
-    }
+        dealAdapter = new DealAdapter(this, list, this);
+        dealRecyclerView.setAdapter(dealAdapter);
+            }
 
     @Override
     public void onProductClick(Products products) {
@@ -215,7 +155,7 @@ public class ProductActivity extends AppCompatActivity implements ProductListene
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         super.onOptionsItemSelected(item);
         if (item.getItemId() == R.id.menu_cart) {
             navigateToView(this, CartActivity.class);
@@ -245,4 +185,5 @@ public class ProductActivity extends AppCompatActivity implements ProductListene
         icon.mutate();
         icon.setDrawableByLayerId(R.id.cart_item_count, badge);
     }
+
 }

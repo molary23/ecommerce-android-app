@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface OnFetchDataListener<Products> {
 
-    void onFetchData(List<Products> products, String message);
+    void onFetchData(List<Products> products, String message, Section section);
     void onError(String message);
 }

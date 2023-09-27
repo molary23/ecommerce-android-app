@@ -11,7 +11,7 @@ import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.textview.MaterialTextView;
 import com.hassanadeola.mattire.R;
 
-public class CustomViewHolder extends RecyclerView.ViewHolder{
+public class ProductViewHolder extends RecyclerView.ViewHolder{
 
 
     MaterialTextView product_name, product_price;
@@ -23,7 +23,7 @@ public class CustomViewHolder extends RecyclerView.ViewHolder{
 
     MaterialCardView imageCard;
 
-    public CustomViewHolder(@NonNull View itemView) {
+    public ProductViewHolder(@NonNull View itemView) {
         super(itemView);
 
         product_image = itemView.findViewById(R.id.product_image);

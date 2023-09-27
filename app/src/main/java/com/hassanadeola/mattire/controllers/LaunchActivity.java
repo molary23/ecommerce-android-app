@@ -23,8 +23,6 @@ public class LaunchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launch);
         String token = Utils.getSharedPreferences(this, "token");
-     /*   sharedPreferences = getSharedPreferences("userPreference", MODE_PRIVATE);
-        String token = sharedPreferences.getString("token", "");*/
         if (token.isEmpty()){
             Firebase firebase = new Firebase(this);
             firebase.getToken();
@@ -43,6 +41,7 @@ public class LaunchActivity extends AppCompatActivity {
             authClass = ProductActivity.class;
         }
         navigateToView(this, authClass);
+        finish();
     }
 
 

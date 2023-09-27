@@ -17,11 +17,19 @@
         <activity
             android:name=".controllers.SettingsActivity"
             android:exported="false"
-            android:label="Settings"/>
+            android:label="Settings">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".controllers.ProductActivity" />
+        </activity>
         <activity
             android:name=".controllers.SearchActivity"
             android:exported="false"
-            android:label="Search Products"/>
+            android:label="Search Products">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".controllers.ProductActivity" />
+        </activity>
         <activity
             android:name=".controllers.ProductActivity"
             android:exported="false"
@@ -29,15 +37,26 @@
         <activity
             android:name=".controllers.CartActivity"
             android:exported="false"
-            android:label="Cart"/>
+            android:label="Cart">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".controllers.ProductActivity" />
+        </activity>
         <activity
             android:name=".controllers.CheckoutActivity"
             android:exported="false"
-            android:label="Checkout"/>
+            android:label="Checkout">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".controllers.CartActivity" />
+        </activity>
         <activity
             android:name=".controllers.DetailsActivity"
             android:exported="false"
             android:theme="@style/Theme.Material3.DayNight.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".controllers.ProductActivity" />
         </activity>
         <activity
             android:name=".controllers.LaunchActivity"

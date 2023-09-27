@@ -42,7 +42,7 @@ public class RequestManager {
         );
     }
 
-    public void getProductLists(OnFetchDataListener listener, int page, int limit) {
+    public void getProductLists(OnFetchDataListener listener, int page, int limit, Section section) {
         CallProductApi callProductApi = retrofit.create(CallProductApi.class);
         Call<List<Products>> call = callProductApi.getProducts(page, limit);
 
@@ -56,7 +56,7 @@ public class RequestManager {
                     }
                     if (response.body() != null) {
                     //    List<Products> products = response.body().toArray();
-                        listener.onFetchData(response.body(), response.message());
+                        listener.onFetchData(response.body(), response.message(), section);
                     }
 
                 }
