@@ -50,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void login() {
-        String username = tf_username.getText().toString(),
+        String username = tf_username.getText().toString().trim().toLowerCase(),
                 password = tf_password.getText().toString();
 
         if (validateUserInput(username) && validateUserInput(password)) {

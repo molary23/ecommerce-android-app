@@ -78,6 +78,8 @@ public class Firebase {
     }
 
     public void createUser(String email, String password, String username, String phone) {
+
+        // Check if user already exists
         firebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener((Activity) context, new OnCompleteListener<AuthResult>() {
                     @Override

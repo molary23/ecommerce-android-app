@@ -17,7 +17,19 @@
     <string name="product_name">Product Name</string>
     <string name="product_price">$50.99</string>
     <string name="description_title">DESCRIPTION</string>
-    <string name="lorem">lorem ipsum dolor sit amet d Lorem ipsum dolor sit amet d Lore lorem ips sum dolor sit amet d Lorem lorem ipsum dolor sit amet d</string>
+    <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean congue, orci in consequat cursus,
+        mi enim semper diam, vitae hendrerit neque lorem sit amet tellus. Nullam et tempor felis. Suspendisse egestas imperdiet urna
+        in mattis. Morbi pretium orci lorem, nec lacinia justo efficitur et.
+        Nullam placerat diam in est faucibus posuere. Duis sit amet lacus eros. Morbi porttitor et mi in gravida.
+        Etiam quam metus, porttitor sed imperdiet non, mollis sed nisi.
+        Quisque rutrum felis euismod, posuere justo eget, varius magna. Vestibulum pretium, nisi vitae pellentesque volutpat,
+        elit tortor sollicitudin quam, in dictum mi massa in lectus. Aliquam sit amet mi ut lorem egestas feugiat.
+        Ut magna ligula, suscipit nec tempus cursus, malesuada sit amet tortor. Nunc a consectetur felis, eu ullamcorper turpis.
+        Donec id magna placerat, interdum dolor sit amet, ullamcorper tellus. Donec nec accumsan urna.
+        Pellentesque sed mattis lectus, id ullamcorper tortor. In fringilla egestas rutrum. Donec cursus purus dictum, sodales ante a,
+        congue dui. Donec varius nec neque nec aliquet. Sed justo mauris, tristique in ipsum vel, mollis maximus mi.
+        Aenean ut semper massa. Aenean tincidunt metus id diam venenatis mattis.
+    </string>
     <string name="payment">PAYMENT</string>
     <string name="card_number">CARD DETAILS</string>
     <string name="dummy_card">4123 3456 5467 3452</string>
@@ -37,4 +49,6 @@
     <string name="recommended">RECOMMENDED</string>
     <string name="best_seller">BEST SELLER</string>
     <string name="deals">DEALS</string>
+    <string name="dummy_rating">4.5</string>
+    <string name="add_to_cart">Add to Cart</string>
 </resources>

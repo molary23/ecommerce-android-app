@@ -53,8 +53,8 @@ public class ProductActivity extends AppCompatActivity implements ProductListene
 
         RequestManager requestManager = new RequestManager(this);
         requestManager.getProductLists(recommendedListener, 0, 5);
-        requestManager.getProductLists(bestListener, 1, 10);
-        requestManager.getProductLists(dealListener, 2, 10);
+     //   requestManager.getProductLists(bestListener, 1, 10);
+     //   requestManager.getProductLists(dealListener, 2, 10);
     }
 
     public void logout() {
@@ -84,7 +84,7 @@ public class ProductActivity extends AppCompatActivity implements ProductListene
                             Toast.LENGTH_SHORT).show();
                 }
             };
-
+/*
     private final OnFetchDataListener<Products> bestListener =
             new OnFetchDataListener<Products>() {
                 @Override
@@ -128,6 +128,8 @@ public class ProductActivity extends AppCompatActivity implements ProductListene
                             Toast.LENGTH_SHORT).show();
                 }
             };
+            */
+
 
     private void showRecommendedProducts(List<Products> list) {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this,
@@ -140,7 +142,7 @@ public class ProductActivity extends AppCompatActivity implements ProductListene
 
 
     }
-
+/*
 
     private void showBestProducts(List<Products> list) {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this,
@@ -162,7 +164,7 @@ public class ProductActivity extends AppCompatActivity implements ProductListene
 
 
     }
-
+*/
     @Override
     public void onClick(View view) {
 

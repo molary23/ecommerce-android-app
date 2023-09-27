@@ -54,11 +54,11 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void register() {
-        String username = tf_username.getText().toString(),
+        String username = tf_username.getText().toString().trim().toLowerCase(),
                 password = tf_password.getText().toString(),
                 confirmPassword = tf_confirm_password.getText().toString(),
-                phone = tf_phone.getText().toString(),
-                email = tf_email.getText().toString();
+                phone = tf_phone.getText().toString().trim(),
+                email = tf_email.getText().toString().trim().toLowerCase();
 
         AlertDialog.Builder builder;
         if (validateUserInput(username) && validateUserInput(password)

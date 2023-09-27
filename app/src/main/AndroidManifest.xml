@@ -36,6 +36,11 @@
             android:label="Checkout"/>
         <activity
             android:name=".controllers.DetailsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Material3.DayNight.NoActionBar">
+        </activity>
+        <activity
+            android:name=".controllers.LaunchActivity"
             android:exported="true"
             android:theme="@style/Theme.Material3.DayNight.NoActionBar">
             <intent-filter>
@@ -43,12 +48,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".controllers.LaunchActivity"
-            android:exported="false"
-            android:theme="@style/Theme.Material3.DayNight.NoActionBar">
-
         </activity>
         <activity
             android:name=".controllers.ConfirmationActivity"
