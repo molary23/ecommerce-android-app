@@ -4,20 +4,31 @@ package com.hassanadeola.mattire.controllers;
 import static com.hassanadeola.mattire.utils.Utils.navigateToView;
 import static com.hassanadeola.mattire.utils.Utils.toggleDisable;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.textview.MaterialTextView;
 import com.hassanadeola.mattire.R;
 import com.hassanadeola.mattire.adapter.CustomAdapter;
 import com.hassanadeola.mattire.api.RequestManager;
@@ -25,6 +36,7 @@ import com.hassanadeola.mattire.listeners.OnFetchDataListener;
 import com.hassanadeola.mattire.listeners.ProductListener;
 import com.hassanadeola.mattire.models.Firebase;
 import com.hassanadeola.mattire.models.Products;
+import com.hassanadeola.mattire.utils.CountDrawable;
 import com.hassanadeola.mattire.utils.Section;
 
 import java.util.List;
@@ -53,9 +65,12 @@ public class ProductActivity extends AppCompatActivity implements ProductListene
 
         RequestManager requestManager = new RequestManager(this);
         requestManager.getProductLists(recommendedListener, 0, 5);
-     //   requestManager.getProductLists(bestListener, 1, 10);
-     //   requestManager.getProductLists(dealListener, 2, 10);
+      //  requestManager.getProductLists(recommendedListener, 1, 10, Section.BEST);
+     //   requestManager.getProductLists(recommendedListener, 2, 10, Section.DEALS);
+        //   requestManager.getProductLists(bestListener, 1, 10);
+        //   requestManager.getProductLists(dealListener, 2, 10);
     }
+
 
     public void logout() {
         Firebase firebase = new Firebase(this);
@@ -72,6 +87,13 @@ public class ProductActivity extends AppCompatActivity implements ProductListene
                                 Toast.LENGTH_SHORT).show();
                         toggleDisable(false, progressBar, getWindow());
                     } else {
+                       /* if (section == Section.RECOMMENDED) {
+                            showRecommendedProducts(list);
+                        } else if (section == Section.BEST) {
+                            showRecommendedProducts(list);
+                        } else {
+                            showDealProducts(list);
+                        }*/
                         showRecommendedProducts(list);
                         toggleDisable(false, progressBar, getWindow());
 
@@ -82,6 +104,7 @@ public class ProductActivity extends AppCompatActivity implements ProductListene
                 public void onError(String message) {
                     Toast.makeText(ProductActivity.this, "Error Occurred: " + message,
                             Toast.LENGTH_SHORT).show();
+                    toggleDisable(false, progressBar, getWindow());
                 }
             };
 /*
@@ -142,7 +165,7 @@ public class ProductActivity extends AppCompatActivity implements ProductListene
 
 
     }
-/*
+
 
     private void showBestProducts(List<Products> list) {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this,
@@ -164,7 +187,7 @@ public class ProductActivity extends AppCompatActivity implements ProductListene
 
 
     }
-*/
+
     @Override
     public void onClick(View view) {
 
@@ -175,5 +198,51 @@ public class ProductActivity extends AppCompatActivity implements ProductListene
         Intent intent = new Intent(this, DetailsActivity.class);
         intent.putExtra("product", products);
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        setCount(this, "9", menu);
+        return true;
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.options_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        super.onOptionsItemSelected(item);
+        if (item.getItemId() == R.id.menu_cart) {
+            navigateToView(this, CartActivity.class);
+        } else if (item.getItemId() == R.id.menu_settings) {
+            navigateToView(this, SettingsActivity.class);
+        }
+        return true;
+    }
+
+
+    public void setCount(Context context, String count, Menu menu) {
+        MenuItem menuItem = menu.findItem(R.id.menu_cart);
+        LayerDrawable icon = (LayerDrawable) menuItem.getIcon();
+
+        CountDrawable badge;
+
+        // Reuse drawable if possible
+        assert icon != null;
+        Drawable reuse = icon.findDrawableByLayerId(R.id.cart_item_count);
+        if (reuse instanceof CountDrawable) {
+            badge = (CountDrawable) reuse;
+        } else {
+            badge = new CountDrawable(context);
+        }
+
+        badge.setCount(count);
+        icon.mutate();
+        icon.setDrawableByLayerId(R.id.cart_item_count, badge);
     }
 }

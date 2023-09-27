@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.hassanadeola.mattire.listeners.OnFetchDataListener;
 import com.hassanadeola.mattire.models.Products;
+import com.hassanadeola.mattire.utils.Section;
 
 import java.util.List;
 
