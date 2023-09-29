@@ -74,27 +74,13 @@ public class CartItems {
         setSharedPreferences(context, "CART_ITEMS", Utils.createStringJson(getCartItems()));
     }
 
-    public void removeAProductFromCart(Products product) {
-        boolean isFound = isFound(product.getId());
-
-        // Post to DB
-        if (isFound) {
-            for (CartItem cartItem : cartItems) {
-                //  String id = cartItem.getProduct().getId();
-                if (cartItem.getProduct().getId().equalsIgnoreCase(product.getId())) {
-                    cartItem.setQuantity(cartItem.getQuantity() - 1);
-                }
-            }
-            cartItems = cartItems.stream().filter(cartItem -> cartItem.getQuantity() >= 1)
-                    .collect(Collectors.toList());
-        }
-    }
-
-    public void removeAllInstancesOfProductFromCart(Products product) {
+  
+    public void removeAProductFromCart(String productId) {
         //  cartItems = cartItems.stream().filter(cartItem -> cartItem.getProduct().getId()
         //   .equalsIgnoreCase(product.getId())).collect(Collectors.toList());
         cartItems.removeIf(cartItem -> cartItem.getProduct().getId()
-                .equalsIgnoreCase(product.getId()));
+                .equalsIgnoreCase(productId));
+        setSharedPreferences(context, "CART_ITEMS", Utils.createStringJson(getCartItems()));
     }
 
     public void clearCart() {
@@ -102,5 +88,35 @@ public class CartItems {
         cartItems.clear();
     }
 
+    public void reduceProductInCart(String productId){
+        boolean isFound = isFound(productId);
 
+        // Reduce in DB
+        if (isFound) {
+            for (CartItem cartItem : cartItems) {
+                //  String id = cartItem.getProduct().getId();
+                if (cartItem.getProduct().getId().equalsIgnoreCase(productId)) {
+                    cartItem.setQuantity(cartItem.getQuantity() - 1);
+                }
+            }
+            cartItems = cartItems.stream().filter(cartItem -> cartItem.getQuantity() >= 1)
+                    .collect(Collectors.toList());
+        }
+        setSharedPreferences(context, "CART_ITEMS", Utils.createStringJson(getCartItems()));
+    }
+
+
+    public void increaseProductInCart(String productId) {
+        boolean isFound = isFound(productId);
+        // Increase in DB
+        if (isFound) {
+            for (CartItem cartItem : cartItems) {
+                //  String id = cartItem.getProduct().getId();
+                if (cartItem.getProduct().getId().equalsIgnoreCase(productId)) {
+                    cartItem.setQuantity(cartItem.getQuantity() + 1);
+                }
+            }
+                   }
+        setSharedPreferences(context, "CART_ITEMS", Utils.createStringJson(getCartItems()));
+    }
 }

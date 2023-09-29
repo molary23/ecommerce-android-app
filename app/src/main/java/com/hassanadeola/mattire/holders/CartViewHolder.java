@@ -10,7 +10,7 @@ import com.google.android.material.textview.MaterialTextView;
 import com.hassanadeola.mattire.R;
 
 public class CartViewHolder extends RecyclerView.ViewHolder {
-    public ShapeableImageView product_image, remove_from_cart;
+    public ShapeableImageView product_image, remove_from_cart, increase_product, reduce_product;
     public MaterialTextView product_name, product_quantity, product_price;
 
 
@@ -22,5 +22,7 @@ public class CartViewHolder extends RecyclerView.ViewHolder {
         product_quantity = itemView.findViewById(R.id.product_quantity);
         product_name = itemView.findViewById(R.id.product_name);
         remove_from_cart = itemView.findViewById(R.id.remove_from_cart);
+        increase_product = itemView.findViewById(R.id.increase_product);
+        reduce_product = itemView.findViewById(R.id.reduce_product);
     }
 }

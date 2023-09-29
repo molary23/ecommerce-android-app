@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="@dimen/sm"
-    >
+    android:padding="@dimen/sm">
 
 
     <com.google.android.material.card.MaterialCardView
@@ -32,37 +31,34 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="9"
+            android:layout_weight="1"
             android:orientation="horizontal"
-            android:weightSum="8">
+            android:weightSum="10">
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/product_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="top|start"
-                android:layout_weight="8"
+                android:layout_weight="9"
                 android:gravity="start|top"
                 android:text="@string/product_name"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
+
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/remove_from_cart"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_gravity="top|end"
                 android:layout_weight="1"
-                android:gravity="end|top"
+                android:gravity="bottom|top|end"
                 app:srcCompat="@drawable/baseline_delete_24" />
-
-
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_gravity="end"
             android:layout_weight="1"
             android:orientation="horizontal">
 
@@ -71,21 +67,37 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|start"
-                android:gravity="start"
+                android:gravity="center|start"
                 android:orientation="horizontal">
 
-                <com.google.android.material.textview.MaterialTextView
+                <!--<com.google.android.material.textview.MaterialTextView
                     android:id="@+id/product_quantity_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/md"
-                    android:text="@string/quantity" />
+                    android:text="@string/quantity" />-->
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/reduce_product"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    app:srcCompat="@drawable/round_remove_24" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/product_quantity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/qty" />
+                    android:paddingStart="@dimen/xs"
+                    android:paddingEnd="@dimen/xs"
+                    android:text="@string/qty"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/increase_product"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    app:srcCompat="@drawable/round_add_24" />
             </LinearLayout>
 
 

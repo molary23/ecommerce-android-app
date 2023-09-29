@@ -24,12 +24,12 @@ public class CartActivity extends AppCompatActivity implements CartListener {
 
     CartAdapter cartAdapter;
     RecyclerView cartRecyclerView;
-
+    CartItems cartItems;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
-        CartItems cartItems = new CartItems(this);
+         cartItems = new CartItems(this);
         showCartItems(cartItems.getCartItems());
     }
 
@@ -45,7 +45,20 @@ public class CartActivity extends AppCompatActivity implements CartListener {
     }
 
     @Override
-    public void onRemoveFromCart(CartItem cartItem) {
+    public void onRemoveFromCart(String productId) {
+        cartItems.removeAProductFromCart(productId);
+        showCartItems(cartItems.getCartItems());
+    }
 
+    @Override
+    public void onReduceProduct(String productId) {
+        cartItems.reduceProductInCart(productId);
+        showCartItems(cartItems.getCartItems());
+    }
+
+    @Override
+    public void onIncreaseProduct(String productId) {
+        cartItems.increaseProductInCart(productId);
+        showCartItems(cartItems.getCartItems());
     }
 }

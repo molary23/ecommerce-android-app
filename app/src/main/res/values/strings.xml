@@ -59,6 +59,8 @@
     <string name="log_out">Log Out</string>
     <string name="pref_logout_val">pref_logout_val</string>
     <string name="search">Search</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
 
     <string-array name="pref_theme">
         <item>Light</item>

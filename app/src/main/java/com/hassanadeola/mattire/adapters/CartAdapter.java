@@ -53,7 +53,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartViewHolder> {
         holder.product_image.setContentDescription(cartItem.get(position).getProduct().getName());
 
         holder.remove_from_cart.setOnClickListener((View view) ->
-                cartListener.onRemoveFromCart(cartItem.get(position)));
+                cartListener.onRemoveFromCart(cartItem.get(position).getProduct().getId()));
+
+        holder.increase_product.setOnClickListener((View view) ->
+                cartListener.onIncreaseProduct(cartItem.get(position).getProduct().getId()));
+
+        holder.reduce_product.setOnClickListener((View view) ->
+                cartListener.onReduceProduct(cartItem.get(position).getProduct().getId()));
     }
 
     @Override

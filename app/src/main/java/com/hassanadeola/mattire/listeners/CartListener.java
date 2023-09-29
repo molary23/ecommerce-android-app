@@ -5,5 +5,8 @@ import com.hassanadeola.mattire.models.CartItem;
 
 public interface CartListener {
 
-    void onRemoveFromCart(CartItem cartItem);
+    void onRemoveFromCart(String productId);
+
+    void onReduceProduct(String productId);
+    void onIncreaseProduct(String productId);
 }
