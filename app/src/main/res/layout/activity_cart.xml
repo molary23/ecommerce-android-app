@@ -6,4 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".controllers.CartActivity">
 
+    <include
+        android:id="@+id/cartRecyclerView"
+        layout="@layout/recycler_view" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

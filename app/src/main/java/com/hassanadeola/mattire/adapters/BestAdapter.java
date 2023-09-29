@@ -1,4 +1,4 @@
-package com.hassanadeola.mattire.adapter;
+package com.hassanadeola.mattire.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,13 +10,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.hassanadeola.mattire.R;
+import com.hassanadeola.mattire.holders.ProductViewHolder;
 import com.hassanadeola.mattire.listeners.ProductListener;
 import com.hassanadeola.mattire.models.Products;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class DealAdapter  extends RecyclerView.Adapter<ProductViewHolder>{
+public class BestAdapter extends RecyclerView.Adapter<ProductViewHolder>{
     private final Context context;
 
     private final List<Products> products;
@@ -25,13 +26,12 @@ public class DealAdapter  extends RecyclerView.Adapter<ProductViewHolder>{
 
 
 
-    public DealAdapter(Context context, List<Products> products, ProductListener listener) {
+    public BestAdapter(Context context, List<Products> products, ProductListener listener) {
         this.context = context;
         this.products = products;
         this.productListener = listener;
 
     }
-
 
     @NonNull
     @Override
@@ -42,11 +42,12 @@ public class DealAdapter  extends RecyclerView.Adapter<ProductViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
-       int  width = 600,
-        height = 600;
+        int width = 1200,
+        height = 1200;
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width, height);
         holder.imageCard.setLayoutParams(params);
-        holder.imageCard.setRadius(20);
+        holder.imageCard.setRadius(50);
+        holder.product_name.setTextSize(20);
         holder.product_name.setText(products.get(position).getName());
         String price = "$" + String.valueOf(products.get(position).getPrice());
         holder.product_price.setText(price);

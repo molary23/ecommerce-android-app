@@ -1,9 +1,8 @@
-package com.hassanadeola.mattire.fragment;
+package com.hassanadeola.mattire.fragments;
 
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.preference.ListPreference;

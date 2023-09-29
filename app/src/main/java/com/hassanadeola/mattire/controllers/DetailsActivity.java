@@ -10,6 +10,7 @@ import android.graphics.text.LineBreaker;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 
@@ -18,6 +19,7 @@ import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.textview.MaterialTextView;
 import com.hassanadeola.mattire.R;
 import com.hassanadeola.mattire.models.Products;
+import com.hassanadeola.mattire.utils.CartItems;
 import com.squareup.picasso.Picasso;
 
 import java.util.regex.Pattern;
@@ -48,7 +50,6 @@ public class DetailsActivity extends AppCompatActivity {
 
         addToCart = findViewById(R.id.addToCart);
 
-        // String [] images = product.getImage().split(Pattern.quote("|"));
 
 
         product_image_layout = findViewById(R.id.product_image_layout);
@@ -69,6 +70,8 @@ public class DetailsActivity extends AppCompatActivity {
         product_rating_icon.setImageResource(rating >= 4.0 ? R.drawable.outline_star_24 : R.drawable.outline_star_border_24);
         ;
         populateImages(product.getImage());
+
+        addToCart.setOnClickListener((View view)-> addToCart(product));
     }
 
     public void populateImages(String images) {
@@ -80,7 +83,6 @@ public class DetailsActivity extends AppCompatActivity {
 
        for (String img : imageArray) {
             if (img != null) {
-                Log.d(TAG,img);
                 ShapeableImageView imageView = new ShapeableImageView(this);
                 Picasso.get().load(img).into(imageView);
                 imageView.setLayoutParams(params);
@@ -93,6 +95,7 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     public void addToCart(Products product) {
-
+        CartItems cartItems = new CartItems(this);
+        cartItems.addToCart(product);
     }
 }

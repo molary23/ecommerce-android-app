@@ -13,6 +13,7 @@ import android.util.Log;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.hassanadeola.mattire.R;
+import com.hassanadeola.mattire.api.RequestManager;
 import com.hassanadeola.mattire.models.Firebase;
 import com.hassanadeola.mattire.utils.Utils;
 
@@ -27,6 +28,8 @@ public class LaunchActivity extends AppCompatActivity {
             Firebase firebase = new Firebase(this);
             firebase.getToken();
         }
+
+
 
         Runnable runnable = this::isLoggedIn;
 

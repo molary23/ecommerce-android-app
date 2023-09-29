@@ -1,4 +1,4 @@
-package com.hassanadeola.mattire.adapter;
+package com.hassanadeola.mattire.holders;
 
 import android.view.View;
 import android.widget.LinearLayout;
@@ -14,14 +14,14 @@ import com.hassanadeola.mattire.R;
 public class ProductViewHolder extends RecyclerView.ViewHolder{
 
 
-    MaterialTextView product_name, product_price;
+    public MaterialTextView product_name, product_price;
 
 
-    ShapeableImageView product_image;
+    public ShapeableImageView product_image;
 
-    LinearLayout product_box;
+    public LinearLayout product_box;
 
-    MaterialCardView imageCard;
+    public MaterialCardView imageCard;
 
     public ProductViewHolder(@NonNull View itemView) {
         super(itemView);

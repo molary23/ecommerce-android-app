@@ -11,6 +11,14 @@ import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AlertDialog;
 
+import com.google.gson.Gson;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 public class Utils {
 
 
@@ -55,8 +63,10 @@ public class Utils {
         sharedPreferences = context.getSharedPreferences("userPreference", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
         editor.putString(key, value);
-        editor.apply();
+                editor.apply();
     }
+
+
 
     public static void removeSharedPreferences(Context context, String key) {
         SharedPreferences sharedPreferences;
@@ -64,5 +74,11 @@ public class Utils {
         sharedPreferences = context.getSharedPreferences("userPreference", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
         editor.remove(key);
+        editor.apply();
+    }
+
+    public static String createStringJson(List<?> value){
+        Gson gson = new Gson();
+        return gson.toJson(value);
     }
 }

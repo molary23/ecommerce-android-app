@@ -30,6 +30,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.hassanadeola.mattire.api.RequestManager;
 import com.hassanadeola.mattire.controllers.LoginActivity;
 import com.hassanadeola.mattire.controllers.ProductActivity;
 import com.hassanadeola.mattire.utils.Utils;
@@ -53,9 +54,12 @@ public class Firebase {
     private String token = null;
     Context context;
 
+    private RequestManager requestManager;
+
     public Firebase(Context context) {
         this.context = context;
         firebaseAuth = FirebaseAuth.getInstance();
+         requestManager = new RequestManager(context);
 
         //   firebaseDatabase = FirebaseDatabase.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
@@ -72,6 +76,7 @@ public class Firebase {
         boolean isLoggedIn = false;
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
         if (currentUser != null) {
+            requestManager.getCartItemList(currentUser.getUid());
             isLoggedIn = true;
             currentUser.reload();
         }
@@ -110,9 +115,8 @@ public class Firebase {
                         if (task.isSuccessful()) {
                             FirebaseUser user = firebaseAuth.getCurrentUser();
                             if (user != null) {
-                                setSharedPreferences(context,"USERID", user.getUid());
-                              /*  editor.putString("USERID", user.getUid());
-                                editor.apply();*/
+                                setSharedPreferences(context, "USER_ID", user.getUid());
+                                requestManager.getCartItemList(user.getUid());
                                 navigateToView(context, ProductActivity.class);
                                 ((Activity) context).finish();
                             }
@@ -148,9 +152,7 @@ public class Firebase {
     }
 
     public void logout() {
-      /*  editor.remove("USERID");
-        editor.apply();*/
-        removeSharedPreferences(context, "USERID");
+        removeSharedPreferences(context, "USER_ID");
         firebaseAuth.signOut();
         navigateToView(context, LoginActivity.class);
         ((Activity) context).finish();

@@ -1,23 +1,23 @@
-package com.hassanadeola.mattire.adapter;
+package com.hassanadeola.mattire.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.hassanadeola.mattire.R;
+import com.hassanadeola.mattire.holders.ProductViewHolder;
 import com.hassanadeola.mattire.listeners.ProductListener;
 import com.hassanadeola.mattire.models.Products;
 import com.squareup.picasso.Picasso;
 
-
 import java.util.List;
 
-public class RecommendedAdapter extends RecyclerView.Adapter<ProductViewHolder> {
+public class DealAdapter  extends RecyclerView.Adapter<ProductViewHolder>{
     private final Context context;
 
     private final List<Products> products;
@@ -26,13 +26,13 @@ public class RecommendedAdapter extends RecyclerView.Adapter<ProductViewHolder> 
 
 
 
-
-    public RecommendedAdapter(Context context, List<Products> products, ProductListener listener) {
+    public DealAdapter(Context context, List<Products> products, ProductListener listener) {
         this.context = context;
         this.products = products;
         this.productListener = listener;
 
     }
+
 
     @NonNull
     @Override
@@ -43,6 +43,11 @@ public class RecommendedAdapter extends RecyclerView.Adapter<ProductViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
+       int  width = 600,
+        height = 600;
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width, height);
+        holder.imageCard.setLayoutParams(params);
+        holder.imageCard.setRadius(20);
         holder.product_name.setText(products.get(position).getName());
         String price = "$" + String.valueOf(products.get(position).getPrice());
         holder.product_price.setText(price);

@@ -2,13 +2,12 @@ package com.hassanadeola.mattire.controllers;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NavUtils;
-import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.hassanadeola.mattire.R;
-import com.hassanadeola.mattire.fragment.SettingsFragment;
+import com.hassanadeola.mattire.fragments.SettingsFragment;
 
 import java.util.Objects;
 
