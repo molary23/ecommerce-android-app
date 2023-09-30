@@ -75,7 +75,7 @@ public class ProductActivity extends AppCompatActivity implements ProductListene
         requestManager.getProductLists(listener, 2, 10, Section.DEALS);
 
 
-       CartItems cartItems = new CartItems(this);
+        CartItems cartItems = new CartItems(this);
         cartCount = cartItems.getCartItems().size();
 
 
@@ -89,7 +89,6 @@ public class ProductActivity extends AppCompatActivity implements ProductListene
         Toast.makeText(ProductActivity.this, String.valueOf(cartItems.getCartItems().size()),
                 Toast.LENGTH_SHORT).show();
     }
-
 
 
     public void goToSearch() {
@@ -167,8 +166,6 @@ public class ProductActivity extends AppCompatActivity implements ProductListene
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        Toast.makeText(ProductActivity.this, "On create",
-                Toast.LENGTH_SHORT).show();
         inflater.inflate(R.menu.options_menu, menu);
         return true;
     }
@@ -186,16 +183,12 @@ public class ProductActivity extends AppCompatActivity implements ProductListene
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        Toast.makeText(ProductActivity.this, "On Prep",
-                Toast.LENGTH_SHORT).show();
         setCount(this, String.valueOf(cartCount), menu);
         return true;
     }
 
 
     public void setCount(Context context, String count, Menu menu) {
-        Toast.makeText(ProductActivity.this, "Set Count",
-                Toast.LENGTH_SHORT).show();
         MenuItem menuItem = menu.findItem(R.id.menu_cart);
         LayerDrawable icon = (LayerDrawable) menuItem.getIcon();
 

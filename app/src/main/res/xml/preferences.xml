@@ -13,6 +13,16 @@
             app:icon="@drawable/outline_light_mode_24"
             android:summary="@string/settings_theme_summary"/>
 
+        <ListPreference
+            android:defaultValue="Call"
+            android:dialogTitle="@string/settings_contact"
+            android:entries="@array/pref_contact"
+            android:entryValues="@array/pref_contact"
+            android:key="@string/pref_contact_val"
+            android:title="@string/settings_contact"
+            app:icon="@drawable/baseline_local_phone_24"
+            android:summary="@string/contact_us_words"/>
+
     </PreferenceCategory>
 
     <Preference

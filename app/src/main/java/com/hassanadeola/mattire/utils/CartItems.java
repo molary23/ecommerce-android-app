@@ -20,13 +20,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class CartItems {
-
     private List<CartItem> cartItems;
-
     Context context;
-
     private final RequestManager requestManager;
-
     private final String userId;
 
     public CartItems(Context context) {
@@ -35,7 +31,7 @@ public class CartItems {
         this.requestManager = new RequestManager(context);
         Gson gson = new Gson();
         String cartsString = getSharedPreferences(context, "CART_ITEMS");
-        if (cartsString != null) {
+        if (cartsString != null ) {
             CartItem[] cartItem = gson.fromJson(cartsString, CartItem[].class);
             this.cartItems = new ArrayList<CartItem>(Arrays.asList(cartItem));
         }
@@ -71,27 +67,28 @@ public class CartItems {
             cartItems.add(new CartItem(product, 1));
         }
 
-        setSharedPreferences(context, "CART_ITEMS", Utils.createStringJson(getCartItems()));
+        setSharedPreferences(context, "CART_ITEMS", createStringJson(getCartItems()));
     }
 
-  
+
     public void removeAProductFromCart(String productId) {
-        //  cartItems = cartItems.stream().filter(cartItem -> cartItem.getProduct().getId()
-        //   .equalsIgnoreCase(product.getId())).collect(Collectors.toList());
+        requestManager.removeProductFromCart(userId, productId);
         cartItems.removeIf(cartItem -> cartItem.getProduct().getId()
                 .equalsIgnoreCase(productId));
-        setSharedPreferences(context, "CART_ITEMS", Utils.createStringJson(getCartItems()));
+        setSharedPreferences(context, "CART_ITEMS", createStringJson(getCartItems()));
     }
 
     public void clearCart() {
-        //Post to DB
+        requestManager.clearCart(userId);
         cartItems.clear();
+        setSharedPreferences(context, "CART_ITEMS", createStringJson(getCartItems()));
+
     }
 
-    public void reduceProductInCart(String productId){
+    public void reduceProductInCart(String productId) {
         boolean isFound = isFound(productId);
 
-        // Reduce in DB
+        requestManager.reduceProductInCart(productId, userId);
         if (isFound) {
             for (CartItem cartItem : cartItems) {
                 //  String id = cartItem.getProduct().getId();
@@ -102,12 +99,13 @@ public class CartItems {
             cartItems = cartItems.stream().filter(cartItem -> cartItem.getQuantity() >= 1)
                     .collect(Collectors.toList());
         }
-        setSharedPreferences(context, "CART_ITEMS", Utils.createStringJson(getCartItems()));
+        setSharedPreferences(context, "CART_ITEMS", createStringJson(getCartItems()));
     }
 
 
     public void increaseProductInCart(String productId) {
         boolean isFound = isFound(productId);
+        requestManager.addToCart(productId, userId);
         // Increase in DB
         if (isFound) {
             for (CartItem cartItem : cartItems) {
@@ -116,7 +114,15 @@ public class CartItems {
                     cartItem.setQuantity(cartItem.getQuantity() + 1);
                 }
             }
-                   }
-        setSharedPreferences(context, "CART_ITEMS", Utils.createStringJson(getCartItems()));
+        }
+        setSharedPreferences(context, "CART_ITEMS", createStringJson(getCartItems()));
+    }
+
+    public double getTotal() {
+        double total = 0;
+        for (CartItem items : cartItems) {
+            total += items.getProduct().getPrice() * items.getQuantity();
+        }
+        return total;
     }
 }

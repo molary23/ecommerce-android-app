@@ -56,15 +56,31 @@
     <string name="pref_theme_val">pref_theme_val</string>
     <string name="settings_theme_summary">Light</string>
     <string name="settings_themes">Themes</string>
+    <string name="settings_contact">Contact Us</string>
     <string name="log_out">Log Out</string>
     <string name="pref_logout_val">pref_logout_val</string>
+    <string name="pref_contact_val">pref_contact_val</string>
     <string name="search">Search</string>
     <string name="minus">-</string>
     <string name="plus">+</string>
-
+    <string name="check_out">Check Out</string>
+    <string name="contact_us_words">You can contact our awesome customer care team if you need any assistance</string>
+    <string name="payment_method">Payment Method</string>
+    <string name="save_card">Save Card</string>
     <string-array name="pref_theme">
         <item>Light</item>
         <item>Dark</item>
         <item>System</item>
+    </string-array>
+
+    <string-array name="pref_contact">
+        <item>Call</item>
+        <item>Message</item>
+        <item>Mail</item>
+    </string-array>
+
+    <string-array name="payment_methods">
+        <item>Saved Card</item>
+        <item>New Card</item>
     </string-array>
 </resources>

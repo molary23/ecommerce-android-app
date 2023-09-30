@@ -18,18 +18,22 @@ import com.hassanadeola.mattire.models.Firebase;
 import com.hassanadeola.mattire.utils.Utils;
 
 public class LaunchActivity extends AppCompatActivity {
+    Firebase firebase;
     SharedPreferences sharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launch);
+
+        firebase = new Firebase(this);
+        getCartItems();
+
         String token = Utils.getSharedPreferences(this, "token");
-        if (token.isEmpty()){
+        if (token.isEmpty()) {
             Firebase firebase = new Firebase(this);
             firebase.getToken();
         }
-
-
 
         Runnable runnable = this::isLoggedIn;
 
@@ -37,15 +41,24 @@ public class LaunchActivity extends AppCompatActivity {
         handler.postDelayed(runnable, 5000);
     }
 
-    public void isLoggedIn(){
-        Firebase firebase = new Firebase(this);
+    public void isLoggedIn() {
         Class<?> authClass = LoginActivity.class;
-        if(firebase.isUserLoggedIn()){
+        if (getLoginStatus()) {
             authClass = ProductActivity.class;
         }
         navigateToView(this, authClass);
         finish();
     }
 
+    public boolean getLoginStatus() {
+        return firebase.isUserLoggedIn();
+    }
+
+    public void getCartItems() {
+        if (getLoginStatus()) {
+            RequestManager requestManager = new RequestManager(this);
+            requestManager.getCartItemList(firebase.getCurrentUserId());
+        }
+    }
 
 }

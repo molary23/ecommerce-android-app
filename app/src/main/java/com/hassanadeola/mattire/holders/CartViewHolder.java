@@ -26,3 +26,4 @@ public class CartViewHolder extends RecyclerView.ViewHolder {
         reduce_product = itemView.findViewById(R.id.reduce_product);
     }
 }
+

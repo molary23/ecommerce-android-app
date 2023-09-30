@@ -49,7 +49,7 @@ public class BestAdapter extends RecyclerView.Adapter<ProductViewHolder>{
         holder.imageCard.setRadius(50);
         holder.product_name.setTextSize(20);
         holder.product_name.setText(products.get(position).getName());
-        String price = "$" + String.valueOf(products.get(position).getPrice());
+        String price = "$" + products.get(position).getPrice();
         holder.product_price.setText(price);
         holder.product_name.setText(products.get(position).getName());
 

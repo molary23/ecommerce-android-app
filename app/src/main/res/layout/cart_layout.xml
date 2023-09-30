@@ -40,6 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="top|start"
+                android:layout_marginEnd="@dimen/sm"
                 android:layout_weight="9"
                 android:gravity="start|top"
                 android:text="@string/product_name"
@@ -51,8 +52,9 @@
                 android:id="@+id/remove_from_cart"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
+                android:layout_gravity="top|end"
                 android:layout_weight="1"
-                android:gravity="bottom|top|end"
+                android:gravity="top|end"
                 app:srcCompat="@drawable/baseline_delete_24" />
         </LinearLayout>
 

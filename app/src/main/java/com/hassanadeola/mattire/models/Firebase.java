@@ -22,13 +22,17 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.hassanadeola.mattire.api.RequestManager;
 import com.hassanadeola.mattire.controllers.LoginActivity;
@@ -36,40 +40,33 @@ import com.hassanadeola.mattire.controllers.ProductActivity;
 import com.hassanadeola.mattire.utils.Utils;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.Executor;
 
 
 public class Firebase {
-
     private final FirebaseAuth firebaseAuth;
 
     FirebaseAuth.AuthStateListener firebaseAuthListener;
     FirebaseFirestore firebaseFirestore;
-/*
-    SharedPreferences sharedPreferences;
-    SharedPreferences.Editor editor;*/
 
     String uuid;
-    private String token = null;
+    private final String token = null;
     Context context;
 
-    private RequestManager requestManager;
+    private final RequestManager requestManager;
+
+    private static ArrayList<Users> users = new ArrayList<>();
 
     public Firebase(Context context) {
         this.context = context;
         firebaseAuth = FirebaseAuth.getInstance();
-         requestManager = new RequestManager(context);
-
-        //   firebaseDatabase = FirebaseDatabase.getInstance();
+        requestManager = new RequestManager(context);
         firebaseFirestore = FirebaseFirestore.getInstance();
-
-        //  databaseReference = firebaseDatabase.getReference("users").child(this.uuid);
-/*
-        sharedPreferences = context.getSharedPreferences("userPreference", Context.MODE_PRIVATE);
-        editor = sharedPreferences.edit();*/
-
-
     }
 
     public boolean isUserLoggedIn() {
@@ -78,7 +75,7 @@ public class Firebase {
         if (currentUser != null) {
             requestManager.getCartItemList(currentUser.getUid());
             isLoggedIn = true;
-            currentUser.reload();
+            //   currentUser.reload();
         }
         return isLoggedIn;
     }
@@ -132,7 +129,8 @@ public class Firebase {
                 });
     }
 
-    public void getCurrentUser() {
+    public String getCurrentUserId() {
+        String uid = "";
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             // Name, email address, and profile photo Url
@@ -146,9 +144,10 @@ public class Firebase {
             // The user's ID, unique to the Firebase project. Do NOT use this value to
             // authenticate with your backend server, if you have one. Use
             // FirebaseUser.getIdToken() instead.
-            String uid = user.getUid();
+            uid = user.getUid();
 
         }
+        return uid;
     }
 
     public void logout() {
@@ -171,6 +170,48 @@ public class Firebase {
                 .set(user).addOnSuccessListener((listener) -> {
                     Toast.makeText(context, "Sign up Successful!", Toast.LENGTH_SHORT).show();
                 });
+    }
+
+    public void saveCard(String userId, Card card) {
+        Map<String, Object> updates = new HashMap<String, Object>();
+        updates.put("card", card);
+        updates.put("updatedAt", Calendar.getInstance().getTimeInMillis());
+        firebaseFirestore.collection("users")
+                .document(userId).update(updates).addOnSuccessListener((listener) -> {
+                    Toast.makeText(context, "Card Saved", Toast.LENGTH_SHORT).show();
+                });
+    }
+
+    public Task<DocumentSnapshot> getUserFormFirestore(String userId) {
+        return firebaseFirestore.collection("users").document(userId)
+                .get();
+
+               /* .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot documentSnapshots) {
+                        if (documentSnapshots.isEmpty()) {
+                            Log.d(TAG, "onSuccess: LIST EMPTY");
+                            return;
+                        } else {
+                            // Convert the whole Query Snapshot to a list
+                            // of objects directly! No need to fetch each
+                            // document.
+                            List<Users> user = documentSnapshots.toObjects(Users.class);
+
+                            // Add all to your list
+                            users.addAll(user);
+
+                        }
+                    }
+
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(context, "Error getting data!!!", Toast.LENGTH_LONG).show();
+                    }
+                });*/
+
+
     }
 
 

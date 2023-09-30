@@ -6,6 +6,26 @@ import java.util.Calendar;
 public class Users {
 
     private String username, email, phone, token;
+
+   Card card;
+   Address address;
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public Card getCard() {
+        return card;
+    }
+
+    public void setCard(Card card) {
+        this.card = card;
+    }
+
     Long createdAt, updatedAt;
 
     public String getToken() {

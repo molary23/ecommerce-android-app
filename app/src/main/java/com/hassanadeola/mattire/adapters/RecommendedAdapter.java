@@ -45,7 +45,7 @@ public class RecommendedAdapter extends RecyclerView.Adapter<ProductViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
         holder.product_name.setText(products.get(position).getName());
-        String price = "$" + String.valueOf(products.get(position).getPrice());
+        String price = "$" + products.get(position).getPrice();
         holder.product_price.setText(price);
         holder.product_name.setText(products.get(position).getName());
 

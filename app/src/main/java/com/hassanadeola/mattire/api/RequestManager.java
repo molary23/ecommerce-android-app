@@ -25,6 +25,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.HTTP;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
@@ -65,6 +66,106 @@ public class RequestManager {
         Call<String> addToCart(
                 @Field("userId") String userId,
                 @Field("productId") String productId);
+        @FormUrlEncoded
+        @HTTP(method = "DELETE", path="/orders/remove" ,hasBody = true)
+        Call<String> reduceProductInCart(
+                @Field("userId") String userId,
+                @Field("productId") String productId);
+
+        @FormUrlEncoded
+        @HTTP(method = "DELETE", path="orders/delete/product" ,hasBody = true)
+        Call<String> removeProductFromCart(
+                @Field("userId") String userId,
+                @Field("productId") String productId);
+
+        @FormUrlEncoded
+        @HTTP(method = "DELETE", path="orders/delete" ,hasBody = true)
+        Call<String> clearCart(
+                @Field("userId") String userId);
+    }
+
+    public void reduceProductInCart(String userId, String productId) {
+        CallProductApi callProductApi = retrofit.create(CallProductApi.class);
+        Call<String> call = callProductApi.removeProductFromCart(userId, productId);
+
+        try {
+            call.enqueue(new Callback<String>() {
+
+                @Override
+                public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                    if (!response.isSuccessful()) {
+                        Toast.makeText(context, "Items not reduce in cart. Try again later!", Toast.LENGTH_SHORT).show();
+                    }
+                    if (response.body() != null) {
+                        Toast.makeText(context, response.body(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+                    Toast.makeText(context, "Items not reduce in cart. Try again later", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void removeProductFromCart(String userId, String productId) {
+        CallProductApi callProductApi = retrofit.create(CallProductApi.class);
+        Call<String> call = callProductApi.removeProductFromCart(userId, productId);
+
+        try {
+            call.enqueue(new Callback<String>() {
+
+                @Override
+                public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                    Log.d(TAG, response.toString());
+                    if (!response.isSuccessful()) {
+                        Toast.makeText(context, "Items not removed from cart. Try again later!", Toast.LENGTH_SHORT).show();
+                    }
+                    if (response.body() != null) {
+                        Toast.makeText(context, response.body(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+                    Toast.makeText(context, "Items not removed from cart. Try again later", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void clearCart(String userId) {
+        CallProductApi callProductApi = retrofit.create(CallProductApi.class);
+        Call<String> call = callProductApi.clearCart(userId);
+
+
+        try {
+            call.enqueue(new Callback<String>() {
+
+                @Override
+                public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                    if (!response.isSuccessful()) {
+                        Toast.makeText(context, "Cart not Cleared. Try again later!", Toast.LENGTH_SHORT).show();
+                    }
+                    if (response.body() != null) {
+                        Toast.makeText(context, response.body(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+                    Toast.makeText(context, "Cart not Cleared. Try again later", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void addToCart(String userId, String productId) {
@@ -87,7 +188,6 @@ public class RequestManager {
 
                 @Override
                 public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
-                    Log.e(TAG, t.getMessage());
                     Toast.makeText(context, "Items not added to cart. Try again later", Toast.LENGTH_SHORT).show();
                 }
             });
@@ -152,4 +252,7 @@ public class RequestManager {
         }
 
     }
+
+
+
 }
