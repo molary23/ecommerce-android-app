@@ -15,6 +15,7 @@ import com.google.android.material.textview.MaterialTextView;
 import com.hassanadeola.mattire.R;
 import com.hassanadeola.mattire.models.Products;
 import com.hassanadeola.mattire.utils.CartItems;
+import com.hassanadeola.mattire.utils.Utils;
 import com.squareup.picasso.Picasso;
 
 import java.util.regex.Pattern;
@@ -34,6 +35,8 @@ public class DetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
+
+        Utils.changeStatusBarColor(getWindow());
 
         product = (Products) getIntent().getSerializableExtra("product");
 

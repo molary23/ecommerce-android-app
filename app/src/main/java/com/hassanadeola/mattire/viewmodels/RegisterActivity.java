@@ -31,6 +31,8 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        Utils.changeStatusBarColor(getWindow());
+
 
         txt_login =  findViewById(R.id.txt_login);
         btn_register =  findViewById(R.id.btn_register);

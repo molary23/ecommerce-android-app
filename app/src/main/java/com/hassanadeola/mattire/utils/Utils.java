@@ -1,25 +1,20 @@
 package com.hassanadeola.mattire.utils;
 
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
-import android.widget.ProgressBar;
-
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
-
 import com.google.gson.Gson;
 import com.hassanadeola.mattire.R;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+
 
 public class Utils {
 
@@ -92,5 +87,11 @@ public class Utils {
         getSupportActionBar.setHomeAsUpIndicator(R.drawable.round_arrow_back_ios_24);
         getSupportActionBar.setDisplayHomeAsUpEnabled(true);
 
+    }
+
+
+    public static void changeStatusBarColor(Window getWindow){
+        getWindow.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        getWindow.setStatusBarColor(Color.parseColor("#FF40C4FF"));
     }
 }

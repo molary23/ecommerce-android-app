@@ -66,6 +66,7 @@
         <activity
             android:name=".viewmodels.LaunchActivity"
             android:exported="true"
+            android:theme="@style/Theme.Material3.DayNight.NoActionBar"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -85,13 +86,6 @@
             android:name=".viewmodels.LoginActivity"
             android:exported="false"
             android:theme="@style/Theme.Material3.DayNight.NoActionBar"/>
-
-        <activity
-            android:name=".viewmodels.MainActivity"
-            android:configChanges="uiMode"
-            android:exported="false"
-            android:forceDarkAllowed="true"
-            android:label="Products" />
     </application>
 
 </manifest>
