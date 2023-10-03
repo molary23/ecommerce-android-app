@@ -9,9 +9,11 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 
 import com.google.gson.Gson;
+import com.hassanadeola.mattire.R;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -84,5 +86,11 @@ public class Utils {
     public static String createStringJson(List<?> value){
         Gson gson = new Gson();
         return gson.toJson(value);
+    }
+
+    public static void createActionBar(ActionBar getSupportActionBar){
+        getSupportActionBar.setHomeAsUpIndicator(R.drawable.round_arrow_back_ios_24);
+        getSupportActionBar.setDisplayHomeAsUpEnabled(true);
+
     }
 }

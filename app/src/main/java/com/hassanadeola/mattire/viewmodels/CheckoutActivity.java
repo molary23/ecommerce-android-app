@@ -35,6 +35,8 @@ import com.hassanadeola.mattire.models.Users;
 import com.hassanadeola.mattire.utils.CartItems;
 import com.hassanadeola.mattire.utils.Utils;
 
+import java.util.Objects;
+
 public class CheckoutActivity extends AppCompatActivity {
 
     EditText card_number, month, year, cvv;
@@ -66,6 +68,8 @@ public class CheckoutActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
+
+        Utils.createActionBar(Objects.requireNonNull(getSupportActionBar()));
 
         card_number = findViewById(R.id.card_number);
         month = findViewById(R.id.month);
@@ -125,8 +129,6 @@ public class CheckoutActivity extends AppCompatActivity {
     }
 
     public void getCardDetails() {
-
-
         firebase.getUserFormFirestore(userId).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {

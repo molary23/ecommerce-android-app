@@ -3,6 +3,7 @@ package com.hassanadeola.mattire.viewmodels;
 import static com.hassanadeola.mattire.utils.Utils.createAlertDialog;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -25,6 +26,7 @@ import com.hassanadeola.mattire.utils.CartItems;
 import com.hassanadeola.mattire.utils.Utils;
 
 import java.util.List;
+import java.util.Objects;
 
 public class CartActivity extends AppCompatActivity implements CartListener {
 
@@ -39,6 +41,9 @@ public class CartActivity extends AppCompatActivity implements CartListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
+
+
+        Utils.createActionBar(Objects.requireNonNull(getSupportActionBar()));
 
         sub_price = findViewById(R.id.sub_price);
         btn_check_out = findViewById(R.id.btn_check_out);

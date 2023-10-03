@@ -7,6 +7,7 @@ import android.view.MenuItem;
 
 import com.hassanadeola.mattire.R;
 import com.hassanadeola.mattire.fragments.SettingsFragment;
+import com.hassanadeola.mattire.utils.Utils;
 
 import java.util.Objects;
 
@@ -16,7 +17,7 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-
+        Utils.createActionBar(Objects.requireNonNull(getSupportActionBar()));
 
         getSupportFragmentManager()
                 .beginTransaction()

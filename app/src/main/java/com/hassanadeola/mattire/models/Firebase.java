@@ -145,9 +145,6 @@ public class Firebase {
     }
 
     public void saveUser(String userId, String username, String email, String phone) {
-
-      /*  sharedPreferences = context.getSharedPreferences("userPreference", Context.MODE_PRIVATE);
-        String token = sharedPreferences.getString("token", "");*/
         getSharedPreferences(context, "token");
         Users user = new Users(username, email, phone, token);
 
@@ -171,34 +168,7 @@ public class Firebase {
     public Task<DocumentSnapshot> getUserFormFirestore(String userId) {
         return firebaseFirestore.collection("users").document(userId)
                 .get();
-
-               /* .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot documentSnapshots) {
-                        if (documentSnapshots.isEmpty()) {
-                            Log.d(TAG, "onSuccess: LIST EMPTY");
-                            return;
-                        } else {
-                            // Convert the whole Query Snapshot to a list
-                            // of objects directly! No need to fetch each
-                            // document.
-                            List<Users> user = documentSnapshots.toObjects(Users.class);
-
-                            // Add all to your list
-                            users.addAll(user);
-
-                        }
-                    }
-
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(context, "Error getting data!!!", Toast.LENGTH_LONG).show();
-                    }
-                });*/
-
-
-    }
+            }
 
 
     public void getToken() {
@@ -211,8 +181,6 @@ public class Firebase {
                     // Get new FCM registration token
 
                     setSharedPreferences(context, "token", task.getResult());
-                  /*  editor.putString("token", task.getResult());
-                    editor.apply();*/
-                });
+                               });
     }
 }
