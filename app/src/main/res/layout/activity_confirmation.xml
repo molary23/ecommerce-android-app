@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/blue"
-    tools:context=".controllers.ConfirmationActivity">
+    tools:context=".viewmodels.ConfirmationActivity">
 
     <com.google.android.material.textview.MaterialTextView
         android:layout_width="wrap_content"
@@ -71,6 +71,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/shopping_thanks"
             app:layout_constraintVertical_bias="0.022" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_shopping"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/sm"
+            android:layout_marginEnd="@dimen/sm"
+            android:text="@string/continue_shopping"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/shopping_shipping" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

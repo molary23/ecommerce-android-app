@@ -1,4 +1,4 @@
-package com.hassanadeola.mattire.controllers;
+package com.hassanadeola.mattire.viewmodels;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.hassanadeola.mattire.R;
 
-public class ConfirmationActivity extends AppCompatActivity {
+public class SearchActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_confirmation);
+        setContentView(R.layout.activity_search);
     }
 }

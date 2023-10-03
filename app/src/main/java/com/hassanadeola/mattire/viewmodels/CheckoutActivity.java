@@ -1,6 +1,12 @@
-package com.hassanadeola.mattire.controllers;
+package com.hassanadeola.mattire.viewmodels;
 
 import static android.app.PendingIntent.getActivity;
+
+import static com.hassanadeola.mattire.utils.Utils.createAlertDialog;
+import static com.hassanadeola.mattire.utils.Utils.navigateToView;
+import static com.hassanadeola.mattire.utils.Utils.removeSharedPreferences;
+import static com.hassanadeola.mattire.utils.Utils.toggleDisable;
+import static com.hassanadeola.mattire.utils.Utils.validateUserInput;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +18,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -21,6 +28,8 @@ import com.google.android.material.textview.MaterialTextView;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.hassanadeola.mattire.R;
 import com.hassanadeola.mattire.api.RequestManager;
+import com.hassanadeola.mattire.listeners.PaymentListener;
+import com.hassanadeola.mattire.models.Card;
 import com.hassanadeola.mattire.models.Firebase;
 import com.hassanadeola.mattire.models.Users;
 import com.hassanadeola.mattire.utils.CartItems;
@@ -48,6 +57,11 @@ public class CheckoutActivity extends AppCompatActivity {
     RequestManager requestManager;
     String userId;
 
+    double total;
+    Firebase firebase;
+
+    FrameLayout progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +74,8 @@ public class CheckoutActivity extends AppCompatActivity {
         save_card = findViewById(R.id.save_card);
 
         btn_pay = findViewById(R.id.btn_pay);
+
+        progressBar = findViewById(R.id.progressBar);
 
         ln_subTotal = findViewById(R.id.subTotal);
         ln_tax = findViewById(R.id.tax);
@@ -89,8 +105,8 @@ public class CheckoutActivity extends AppCompatActivity {
 
         CartItems cartItems = new CartItems(this);
         double subTotal = cartItems.getTotal(),
-                tax =  (subTotal * 13) / 100,
-                total = subTotal + tax;
+                tax = (subTotal * 13) / 100;
+        total = subTotal + tax;
         String txt_total = "$" + total,
                 txt_tax = "$" + tax,
                 txt_subtotal = "$" + subTotal;
@@ -99,13 +115,17 @@ public class CheckoutActivity extends AppCompatActivity {
         mt_total_amount.setText(txt_total);
 
 
+        btn_pay.setOnClickListener((View view) -> makePayment());
+
+        firebase = new Firebase(this);
+
         getCardDetails();
 
 
     }
 
     public void getCardDetails() {
-        Firebase firebase = new Firebase(this);
+
 
         firebase.getUserFormFirestore(userId).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
@@ -149,4 +169,42 @@ public class CheckoutActivity extends AppCompatActivity {
         builder.show();
     }
 
+    private final PaymentListener listener = new PaymentListener() {
+
+        @Override
+        public void onMakePayment(Boolean status) {
+            toggleDisable(false, progressBar, getWindow());
+            Toast.makeText(CheckoutActivity.this, "Payment Successful!", Toast.LENGTH_SHORT).show();
+            removeSharedPreferences(CheckoutActivity.this, "CART_ITEMS");
+            navigateToView(CheckoutActivity.this, ConfirmationActivity.class);
+            finish();
+        }
+
+        @Override
+        public void onError(String message) {
+            toggleDisable(false, progressBar, getWindow());
+            Toast.makeText(CheckoutActivity.this, "Payment unsuccessful. Try again later!", Toast.LENGTH_SHORT).show();
+
+        }
+    };
+
+    public void makePayment() {
+        String cardNumber = card_number.getText().toString(),
+                cardYear = year.getText().toString(),
+                cardMonth = month.getText().toString(),
+                cardCVV = cvv.getText().toString();
+        if (validateUserInput(cardNumber, 16) && validateUserInput(cardMonth, 2) && validateUserInput(cardYear, 2) && validateUserInput(cardCVV, 3)) {
+            toggleDisable(true, progressBar, getWindow());
+            if (save_card.isChecked()) {
+                firebase.saveCard(userId, new Card(cardNumber, cardMonth, cardYear, cardCVV));
+            }
+            requestManager.makePayment(listener, userId, total, cardNumber.substring(cardNumber.length() - 4));
+
+        } else {
+            androidx.appcompat.app.AlertDialog.Builder builder = createAlertDialog(this,
+                    "Missing Information", "All fields are required");
+            builder.show();
+
+        }
+    }
 }

@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-
-    tools:context=".controllers.ProductActivity">
+    android:paddingHorizontal="@dimen/xs"
+    tools:context=".viewmodels.ProductActivity">
 
     <include
         android:id="@+id/progressBar"
@@ -19,20 +19,23 @@
         android:id="@+id/btn_search"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:background="@color/off"
+        android:layout_marginStart="@dimen/xs"
+        android:layout_marginEnd="@dimen/xs"
         android:drawableLeft="@drawable/sharp_search_24"
         android:text="@string/search"
         android:textColor="@color/gray"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:backgroundTint="@color/off" />
+app:strokeWidth="2dp"
+        app:backgroundTint="@color/white"
+        app:strokeColor="@color/off" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:paddingBottom="@dimen/sm"
-        android:paddingHorizontal="@dimen/xs">
+       >
 
         <LinearLayout
             android:layout_width="match_parent"

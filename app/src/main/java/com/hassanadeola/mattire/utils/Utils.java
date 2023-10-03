@@ -31,6 +31,10 @@ public class Utils {
         return text.trim().length() > 5;
     }
 
+    public static boolean validateUserInput(String text, int len) {
+        return text.trim().length() >= len;
+    }
+
     public static AlertDialog.Builder createAlertDialog(Context context, String title, String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(title);

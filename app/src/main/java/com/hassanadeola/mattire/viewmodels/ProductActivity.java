@@ -1,7 +1,6 @@
-package com.hassanadeola.mattire.controllers;
+package com.hassanadeola.mattire.viewmodels;
 
 
-import static android.content.ContentValues.TAG;
 import static com.hassanadeola.mattire.utils.Utils.navigateToView;
 import static com.hassanadeola.mattire.utils.Utils.toggleDisable;
 
@@ -17,7 +16,6 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -27,7 +25,6 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
 import com.hassanadeola.mattire.R;
 import com.hassanadeola.mattire.adapters.BestAdapter;
 import com.hassanadeola.mattire.adapters.DealAdapter;
@@ -35,12 +32,10 @@ import com.hassanadeola.mattire.adapters.RecommendedAdapter;
 import com.hassanadeola.mattire.api.RequestManager;
 import com.hassanadeola.mattire.listeners.OnFetchProductListener;
 import com.hassanadeola.mattire.listeners.ProductListener;
-import com.hassanadeola.mattire.models.CartItem;
 import com.hassanadeola.mattire.models.Products;
 import com.hassanadeola.mattire.utils.CartItems;
 import com.hassanadeola.mattire.utils.CountDrawable;
 import com.hassanadeola.mattire.utils.Section;
-import com.hassanadeola.mattire.utils.Utils;
 
 import java.util.List;
 
@@ -78,6 +73,8 @@ public class ProductActivity extends AppCompatActivity implements ProductListene
         CartItems cartItems = new CartItems(this);
         cartCount = cartItems.getCartItems().size();
 
+        toggleDisable(true, progressBar, getWindow());
+
 
     }
 
@@ -86,8 +83,10 @@ public class ProductActivity extends AppCompatActivity implements ProductListene
         super.onStart();
         CartItems cartItems = new CartItems(this);
         cartCount = cartItems.getCartItems().size();
+
         Toast.makeText(ProductActivity.this, String.valueOf(cartItems.getCartItems().size()),
                 Toast.LENGTH_SHORT).show();
+
     }
 
 

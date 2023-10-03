@@ -1,4 +1,4 @@
-package com.hassanadeola.mattire.controllers;
+package com.hassanadeola.mattire.viewmodels;
 
 import static com.hassanadeola.mattire.utils.Utils.*;
 

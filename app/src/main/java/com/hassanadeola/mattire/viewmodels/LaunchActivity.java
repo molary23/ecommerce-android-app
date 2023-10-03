@@ -1,6 +1,5 @@
-package com.hassanadeola.mattire.controllers;
+package com.hassanadeola.mattire.viewmodels;
 
-import static android.content.ContentValues.TAG;
 import static com.hassanadeola.mattire.utils.Utils.navigateToView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,10 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.hassanadeola.mattire.R;
 import com.hassanadeola.mattire.api.RequestManager;
 import com.hassanadeola.mattire.models.Firebase;

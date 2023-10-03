@@ -1,7 +1,4 @@
-package com.hassanadeola.mattire.controllers;
-
-import static android.content.ContentValues.TAG;
-import static android.text.Layout.JUSTIFICATION_MODE_INTER_WORD;
+package com.hassanadeola.mattire.viewmodels;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,9 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.graphics.text.LineBreaker;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;

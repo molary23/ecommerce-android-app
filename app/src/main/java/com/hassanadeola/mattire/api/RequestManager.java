@@ -2,6 +2,10 @@ package com.hassanadeola.mattire.api;
 
 import static android.content.ContentValues.TAG;
 
+import static com.hassanadeola.mattire.utils.Utils.navigateToView;
+import static com.hassanadeola.mattire.utils.Utils.removeSharedPreferences;
+import static com.hassanadeola.mattire.utils.Utils.setSharedPreferences;
+
 import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
@@ -9,10 +13,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 
 import com.hassanadeola.mattire.listeners.OnFetchProductListener;
+import com.hassanadeola.mattire.listeners.PaymentListener;
 import com.hassanadeola.mattire.models.CartItem;
 import com.hassanadeola.mattire.models.Products;
 import com.hassanadeola.mattire.utils.Section;
 import com.hassanadeola.mattire.utils.Utils;
+import com.hassanadeola.mattire.viewmodels.ConfirmationActivity;
 
 import java.util.List;
 
@@ -66,22 +72,60 @@ public class RequestManager {
         Call<String> addToCart(
                 @Field("userId") String userId,
                 @Field("productId") String productId);
+
         @FormUrlEncoded
-        @HTTP(method = "DELETE", path="/orders/remove" ,hasBody = true)
+        @HTTP(method = "DELETE", path = "/orders/remove", hasBody = true)
         Call<String> reduceProductInCart(
                 @Field("userId") String userId,
                 @Field("productId") String productId);
 
         @FormUrlEncoded
-        @HTTP(method = "DELETE", path="orders/delete/product" ,hasBody = true)
+        @HTTP(method = "DELETE", path = "orders/delete/product", hasBody = true)
         Call<String> removeProductFromCart(
                 @Field("userId") String userId,
                 @Field("productId") String productId);
 
         @FormUrlEncoded
-        @HTTP(method = "DELETE", path="orders/delete" ,hasBody = true)
+        @HTTP(method = "DELETE", path = "orders/delete", hasBody = true)
         Call<String> clearCart(
                 @Field("userId") String userId);
+
+        @FormUrlEncoded
+        @POST("pay")
+        Call<Boolean> pay(
+                @Field("userId") String userId,
+                @Field("amount") double amount,
+                @Field("lastFour") String lastFour);
+    }
+
+    public void makePayment(PaymentListener listener, String userId, double amount, String lastFour) {
+        CallProductApi callProductApi = retrofit.create(CallProductApi.class);
+        Call<Boolean> call = callProductApi.pay(userId, amount, lastFour);
+
+        try {
+            call.enqueue(new Callback<Boolean>() {
+
+                @Override
+                public void onResponse(@NonNull Call<Boolean> call, @NonNull Response<Boolean> response) {
+                    if (!response.isSuccessful()) {
+                        Toast.makeText(context, "Unable to process your payment!", Toast.LENGTH_SHORT).show();
+                    }
+                    if (Boolean.TRUE.equals(response.body())) {
+                        listener.onMakePayment(true);
+                    } else {
+                        Toast.makeText(context, "Payment unsuccessful. Try again later!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<Boolean> call, @NonNull Throwable t) {
+                    Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+                    listener.onError(t.getMessage());
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void reduceProductInCart(String userId, String productId) {
@@ -209,7 +253,7 @@ public class RequestManager {
                         Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show();
                     }
                     if (response.body() != null) {
-                        Utils.setSharedPreferences(context, "CART_ITEMS", Utils.createStringJson(response.body()));
+                        setSharedPreferences(context, "CART_ITEMS", Utils.createStringJson(response.body()));
                     }
                 }
 
@@ -252,7 +296,6 @@ public class RequestManager {
         }
 
     }
-
 
 
 }

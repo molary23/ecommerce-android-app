@@ -20,51 +20,51 @@
         android:theme="@style/Theme.Mattire"
         tools:targetApi="31">
         <activity
-            android:name=".controllers.SettingsActivity"
+            android:name=".viewmodels.SettingsActivity"
             android:exported="false"
             android:label="Settings">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".controllers.ProductActivity" />
+                android:value=".viewmodels.ProductActivity" />
         </activity>
         <activity
-            android:name=".controllers.SearchActivity"
+            android:name=".viewmodels.SearchActivity"
             android:exported="false"
             android:label="Search Products">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".controllers.ProductActivity" />
+                android:value=".viewmodels.ProductActivity" />
         </activity>
         <activity
-            android:name=".controllers.ProductActivity"
+            android:name=".viewmodels.ProductActivity"
             android:exported="false"
             android:label="Products"/>
         <activity
-            android:name=".controllers.CartActivity"
+            android:name=".viewmodels.CartActivity"
             android:exported="false"
             android:label="Cart">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".controllers.ProductActivity" />
+                android:value=".viewmodels.ProductActivity" />
         </activity>
         <activity
-            android:name=".controllers.CheckoutActivity"
+            android:name=".viewmodels.CheckoutActivity"
             android:exported="false"
             android:label="Checkout">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".controllers.CartActivity" />
+                android:value=".viewmodels.CartActivity" />
         </activity>
         <activity
-            android:name=".controllers.DetailsActivity"
+            android:name=".viewmodels.DetailsActivity"
             android:exported="false"
             android:theme="@style/Theme.Material3.DayNight.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".controllers.ProductActivity" />
+                android:value=".viewmodels.ProductActivity" />
         </activity>
         <activity
-            android:name=".controllers.LaunchActivity"
+            android:name=".viewmodels.LaunchActivity"
             android:exported="true"
             android:theme="@style/Theme.Material3.DayNight.NoActionBar">
             <intent-filter>
@@ -74,20 +74,20 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".controllers.ConfirmationActivity"
+            android:name=".viewmodels.ConfirmationActivity"
             android:exported="false"
             android:label="Order Confirmation"/>
         <activity
-            android:name=".controllers.RegisterActivity"
+            android:name=".viewmodels.RegisterActivity"
             android:exported="false"
             android:theme="@style/Theme.Material3.DayNight.NoActionBar"/>
         <activity
-            android:name=".controllers.LoginActivity"
+            android:name=".viewmodels.LoginActivity"
             android:exported="false"
             android:theme="@style/Theme.Material3.DayNight.NoActionBar"/>
 
         <activity
-            android:name=".controllers.MainActivity"
+            android:name=".viewmodels.MainActivity"
             android:configChanges="uiMode"
             android:exported="false"
             android:forceDarkAllowed="true"

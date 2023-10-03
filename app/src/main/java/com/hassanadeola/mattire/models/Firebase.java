@@ -2,50 +2,36 @@ package com.hassanadeola.mattire.models;
 
 import static android.app.PendingIntent.getActivity;
 import static android.content.ContentValues.TAG;
-import static android.content.Context.MODE_PRIVATE;
 
 
 import static com.hassanadeola.mattire.utils.Utils.*;
 import static com.hassanadeola.mattire.utils.Utils.createAlertDialog;
-import static com.hassanadeola.mattire.utils.Utils.toggleDisable;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.util.Log;
-import android.view.Window;
-import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.hassanadeola.mattire.api.RequestManager;
-import com.hassanadeola.mattire.controllers.LoginActivity;
-import com.hassanadeola.mattire.controllers.ProductActivity;
-import com.hassanadeola.mattire.utils.Utils;
+import com.hassanadeola.mattire.viewmodels.LoginActivity;
+import com.hassanadeola.mattire.viewmodels.ProductActivity;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.concurrent.Executor;
 
 
 public class Firebase {

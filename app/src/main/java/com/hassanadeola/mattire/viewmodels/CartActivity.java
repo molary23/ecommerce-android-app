@@ -1,13 +1,10 @@
-package com.hassanadeola.mattire.controllers;
+package com.hassanadeola.mattire.viewmodels;
 
 import static com.hassanadeola.mattire.utils.Utils.createAlertDialog;
-import static com.hassanadeola.mattire.utils.Utils.navigateToView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NavUtils;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,15 +18,10 @@ import android.view.View;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textview.MaterialTextView;
 import com.hassanadeola.mattire.R;
-import com.hassanadeola.mattire.adapters.BestAdapter;
 import com.hassanadeola.mattire.adapters.CartAdapter;
-import com.hassanadeola.mattire.adapters.DealAdapter;
-import com.hassanadeola.mattire.api.RequestManager;
 import com.hassanadeola.mattire.listeners.CartListener;
 import com.hassanadeola.mattire.models.CartItem;
-import com.hassanadeola.mattire.models.Products;
 import com.hassanadeola.mattire.utils.CartItems;
-import com.hassanadeola.mattire.utils.Section;
 import com.hassanadeola.mattire.utils.Utils;
 
 import java.util.List;
@@ -103,8 +95,6 @@ public class CartActivity extends AppCompatActivity implements CartListener {
         if (item.getItemId() == R.id.clear_cart) {
             clearCart();
 
-        } else if (item.getItemId() == R.id.menu_settings) {
-            navigateToView(this, SettingsActivity.class);
         } else if (item.getItemId() == android.R.id.home) {
             finish();
             return true;

@@ -1,7 +1,6 @@
-package com.hassanadeola.mattire.controllers;
+package com.hassanadeola.mattire.viewmodels;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NavUtils;
 
 import android.os.Bundle;
 import android.view.MenuItem;
