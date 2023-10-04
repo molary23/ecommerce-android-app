@@ -6,8 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".viewmodels.DetailsActivity">
 
+
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/addToCart"
+        android:id="@+id/btn_addToCart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -51,11 +53,12 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
+
                 <LinearLayout
+                    android:id="@+id/product_image_layout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:id="@+id/product_image_layout"/>
+                    android:orientation="horizontal" />
 
 
             </HorizontalScrollView>
@@ -76,7 +79,7 @@
                     android:layout_gravity="center"
                     android:text="@string/product_name"
                     android:textSize="20sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/product_price"
@@ -124,16 +127,38 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/xs"
+                    android:justificationMode="inter_word"
                     android:text="@string/lorem"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="@+id/horizontalScrollView"
-                    app:shapeAppearanceOverlay="@style/fab_rounded"
-                    android:justificationMode="inter_word"/>
+                    app:shapeAppearanceOverlay="@style/fab_rounded" />
 
             </LinearLayout>
 
 
         </LinearLayout>
     </ScrollView>
-
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="0.5"
+        android:background="@android:color/transparent"
+        android:clickable="true"
+        android:contentDescription="@string/go_back"
+        android:elevation="@dimen/zs"
+        android:focusable="true"
+        android:src="@drawable/round_arrow_back_ios_24"
+        app:tint="@color/white"
+        app:backgroundTint="@color/gray"
+        app:elevation="@dimen/zs"
+        app:fabCustomSize="@dimen/lg"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.03"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.03"
+        app:shapeAppearanceOverlay="@style/fab_rounded" />
 </androidx.constraintlayout.widget.ConstraintLayout>

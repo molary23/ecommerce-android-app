@@ -3,6 +3,7 @@ package com.hassanadeola.mattire.viewmodels;
 import static android.app.PendingIntent.getActivity;
 
 import static com.hassanadeola.mattire.utils.Utils.createAlertDialog;
+import static com.hassanadeola.mattire.utils.Utils.getSharedPreferences;
 import static com.hassanadeola.mattire.utils.Utils.navigateToView;
 import static com.hassanadeola.mattire.utils.Utils.removeSharedPreferences;
 import static com.hassanadeola.mattire.utils.Utils.toggleDisable;
@@ -26,15 +27,19 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textview.MaterialTextView;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.gson.Gson;
 import com.hassanadeola.mattire.R;
 import com.hassanadeola.mattire.api.RequestManager;
 import com.hassanadeola.mattire.listeners.PaymentListener;
 import com.hassanadeola.mattire.models.Card;
+import com.hassanadeola.mattire.models.CartItem;
 import com.hassanadeola.mattire.models.Firebase;
 import com.hassanadeola.mattire.models.Users;
 import com.hassanadeola.mattire.utils.CartItems;
 import com.hassanadeola.mattire.utils.Utils;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 
 public class CheckoutActivity extends AppCompatActivity {
@@ -63,6 +68,8 @@ public class CheckoutActivity extends AppCompatActivity {
     Firebase firebase;
 
     FrameLayout progressBar;
+
+    Card card;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,6 +125,7 @@ public class CheckoutActivity extends AppCompatActivity {
         mt_tax_amount.setText(txt_tax);
         mt_total_amount.setText(txt_total);
 
+        card = new Card();
 
         btn_pay.setOnClickListener((View view) -> makePayment());
 
@@ -129,7 +137,7 @@ public class CheckoutActivity extends AppCompatActivity {
     }
 
     public void getCardDetails() {
-        firebase.getUserFormFirestore(userId).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+     /*   firebase.getUserFormFirestore(userId).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 if (documentSnapshot.exists()) {
@@ -139,7 +147,7 @@ public class CheckoutActivity extends AppCompatActivity {
                     }
                     setUser(user);
                     if (user.getCard() != null) {
-                        onCreateDialog();
+                      //  onCreateDialog();
                     }
                 }
             }
@@ -148,7 +156,17 @@ public class CheckoutActivity extends AppCompatActivity {
             public void onFailure(@NonNull Exception e) {
                 Toast.makeText(CheckoutActivity.this, "Error getting card details!!!", Toast.LENGTH_LONG).show();
             }
-        });
+        });*/
+
+        Gson gson = new Gson();
+        String cardString = Utils.getSharedPreferences(CheckoutActivity.this, "SAVED_CARD");
+        if (cardString != null ) {
+             card = gson.fromJson(cardString, Card.class);
+            if(card != null) {
+                onCreateDialog();
+            }
+
+        }
     }
 
     public void onCreateDialog() {
@@ -159,11 +177,12 @@ public class CheckoutActivity extends AppCompatActivity {
                         // The 'which' argument contains the index position of the selected item.
                         builder.setOnDismissListener(DialogInterface::dismiss);
                         if (which == 0) {
+                            String secretCardNumber = "************" + card.getNumber().substring(12);
                             save_card.setVisibility(View.GONE);
-                            card_number.setText(getUser().getCard().getNumber());
-                            year.setText(getUser().getCard().getYear());
-                            month.setText(getUser().getCard().getMonth());
-                            cvv.setText(getUser().getCard().getCvv());
+                            card_number.setText(secretCardNumber);
+                            year.setText(card.getYear());
+                            month.setText(card.getMonth());
+                            cvv.setText(card.getCvv());
 
                         }
                     }

@@ -18,7 +18,7 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_search"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="45dp"
         android:layout_marginStart="@dimen/xs"
         android:layout_marginEnd="@dimen/xs"
         android:drawableLeft="@drawable/sharp_search_24"
@@ -26,16 +26,15 @@
         android:textColor="@color/gray"
         android:textSize="16sp"
         android:textStyle="bold"
-app:strokeWidth="2dp"
         app:backgroundTint="@color/white"
-        app:strokeColor="@color/off" />
+        app:strokeColor="@color/off"
+        app:strokeWidth="1dp" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:paddingBottom="@dimen/sm"
-       >
+        android:paddingVertical="@dimen/sm">
 
         <LinearLayout
             android:layout_width="match_parent"

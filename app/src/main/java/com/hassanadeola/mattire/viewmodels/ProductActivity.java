@@ -53,6 +53,8 @@ public class ProductActivity extends AppCompatActivity implements ProductListene
 
     int cartCount = 0;
 
+    // CartItems cartItems;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,8 +71,8 @@ public class ProductActivity extends AppCompatActivity implements ProductListene
         requestManager.getProductLists(listener, 1, 10, Section.BEST);
         requestManager.getProductLists(listener, 2, 10, Section.DEALS);
 
-
         CartItems cartItems = new CartItems(this);
+        cartItems = new CartItems(this);
         cartCount = cartItems.getCartItems().size();
 
         toggleDisable(true, progressBar, getWindow());
@@ -81,15 +83,20 @@ public class ProductActivity extends AppCompatActivity implements ProductListene
     @Override
     protected void onStart() {
         super.onStart();
+        invalidateOptionsMenu();
         CartItems cartItems = new CartItems(this);
         cartCount = cartItems.getCartItems().size();
+           }
 
-        Toast.makeText(ProductActivity.this, String.valueOf(cartItems.getCartItems().size()),
+   /* @Override
+    protected void onResume() {
+        super.onResume();
+        CartItems cartItems = new CartItems(this);
+        cartCount = cartItems.getCartItems().size();
+        Toast.makeText(ProductActivity.this, "resume" + String.valueOf(cartItems.getCartItems().size()),
                 Toast.LENGTH_SHORT).show();
-
     }
-
-
+*/
     public void goToSearch() {
         navigateToView(this, SearchActivity.class);
     }
@@ -185,6 +192,8 @@ public class ProductActivity extends AppCompatActivity implements ProductListene
         setCount(this, String.valueOf(cartCount), menu);
         return true;
     }
+
+
 
 
     public void setCount(Context context, String count, Menu menu) {

@@ -27,8 +27,9 @@ public class DetailsActivity extends AppCompatActivity {
 
     Products product;
 
-    ShapeableImageView product_image, product_rating_icon;
-    FloatingActionButton addToCart;
+    ShapeableImageView product_rating_icon;
+    FloatingActionButton btn_addToCart, btn_back;
+
 
     @RequiresApi(api = Build.VERSION_CODES.Q)
     @Override
@@ -46,9 +47,8 @@ public class DetailsActivity extends AppCompatActivity {
         product_rating = findViewById(R.id.product_rating);
         product_rating_icon = findViewById(R.id.product_rating_icon);
 
-        addToCart = findViewById(R.id.addToCart);
-
-
+        btn_addToCart = findViewById(R.id.btn_addToCart);
+        btn_back = findViewById(R.id.btn_back);
 
         product_image_layout = findViewById(R.id.product_image_layout);
 
@@ -69,17 +69,18 @@ public class DetailsActivity extends AppCompatActivity {
         ;
         populateImages(product.getImage());
 
-        addToCart.setOnClickListener((View view)-> addToCart(product));
+        btn_addToCart.setOnClickListener((View view) -> addToCart(product));
+        btn_back.setOnClickListener((View view) -> goBack());
     }
 
     public void populateImages(String images) {
         String[] imageArray = images.split(Pattern.quote("|"));
 
-       int width = 1500,
-        height = 1500;
+        int width = 1500,
+                height = 1500;
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width, height);
 
-       for (String img : imageArray) {
+        for (String img : imageArray) {
             if (img != null) {
                 ShapeableImageView imageView = new ShapeableImageView(this);
                 Picasso.get().load(img).into(imageView);
@@ -90,6 +91,10 @@ public class DetailsActivity extends AppCompatActivity {
         }
 
 
+    }
+
+    public void goBack() {
+        finish();
     }
 
     public void addToCart(Products product) {

@@ -4,6 +4,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".viewmodels.SearchActivity">
+    tools:context=".viewmodels.SearchActivity"
+    android:padding="@dimen/sm">
+
+    <include
+        android:id="@+id/progressBar"
+        layout="@layout/progress_bar"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <SearchView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/xl"
+        android:iconifiedByDefault="false"
+        android:queryHint="Search News..."
+        android:id="@+id/txt_search"
+        android:focusedByDefault="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
+         />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_search"
+        app:layout_constraintVertical_bias="0.02">
+
+
+        <include
+            android:id="@+id/searchRecyclerView"
+            layout="@layout/recycler_view" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

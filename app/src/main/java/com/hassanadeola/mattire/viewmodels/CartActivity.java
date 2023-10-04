@@ -1,6 +1,7 @@
 package com.hassanadeola.mattire.viewmodels;
 
 import static com.hassanadeola.mattire.utils.Utils.createAlertDialog;
+import static com.hassanadeola.mattire.utils.Utils.setSharedPreferences;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -15,13 +16,20 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textview.MaterialTextView;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.gson.Gson;
 import com.hassanadeola.mattire.R;
 import com.hassanadeola.mattire.adapters.CartAdapter;
 import com.hassanadeola.mattire.listeners.CartListener;
 import com.hassanadeola.mattire.models.CartItem;
+import com.hassanadeola.mattire.models.Firebase;
+import com.hassanadeola.mattire.models.Users;
 import com.hassanadeola.mattire.utils.CartItems;
 import com.hassanadeola.mattire.utils.Utils;
 
@@ -36,6 +44,9 @@ public class CartActivity extends AppCompatActivity implements CartListener {
 
     MaterialButton btn_check_out;
     MaterialTextView sub_price;
+    String userId;
+    List<CartItem> cartList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,17 +56,24 @@ public class CartActivity extends AppCompatActivity implements CartListener {
 
         Utils.createActionBar(Objects.requireNonNull(getSupportActionBar()));
 
+        userId = Utils.getSharedPreferences(this, "USER_ID");
+
         sub_price = findViewById(R.id.sub_price);
         btn_check_out = findViewById(R.id.btn_check_out);
 
 
-        btn_check_out.setOnClickListener((View view) -> Utils.navigateToView(this, CheckoutActivity.class));
+
 
         cartItems = new CartItems(this);
-        showCartItems(cartItems.getCartItems());
+       cartList = cartItems.getCartItems();
+        checkCartList(cartList);
 
-        String price = "$" + String.valueOf(cartItems.getTotal());
+        String price = "$" + cartItems.getTotal();
         sub_price.setText(price);
+
+        getCardDetails();
+
+        btn_check_out.setOnClickListener((View view) -> Utils.navigateToView(this, CheckoutActivity.class));
     }
 
 
@@ -72,19 +90,26 @@ public class CartActivity extends AppCompatActivity implements CartListener {
     @Override
     public void onRemoveFromCart(String productId) {
         cartItems.removeAProductFromCart(productId);
-        showCartItems(cartItems.getCartItems());
+        cartList = cartItems.getCartItems();
+        checkCartList(cartList);
+
+      //  showCartItems(cartItems.getCartItems());
     }
 
     @Override
     public void onReduceProduct(String productId) {
         cartItems.reduceProductInCart(productId);
-        showCartItems(cartItems.getCartItems());
+       // showCartItems(cartItems.getCartItems());
+        cartList = cartItems.getCartItems();
+        checkCartList(cartList);
     }
 
     @Override
     public void onIncreaseProduct(String productId) {
         cartItems.increaseProductInCart(productId);
-        showCartItems(cartItems.getCartItems());
+      //  showCartItems(cartItems.getCartItems());
+        cartList = cartItems.getCartItems();
+        checkCartList(cartList);
     }
 
     @Override
@@ -114,10 +139,44 @@ public class CartActivity extends AppCompatActivity implements CartListener {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 cartItems.clearCart();
-                showCartItems(cartItems.getCartItems());
+               // showCartItems(cartItems.getCartItems());
+                cartList = cartItems.getCartItems();
+                checkCartList(cartList);
             }
         });
         builder.show();
+    }
+
+    public void checkCartList(List<CartItem> cartList){
+        showCartItems(cartList);
+        if(cartList.size() > 0){
+            btn_check_out.setVisibility(View.VISIBLE);
+        }else{
+            btn_check_out.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    public void getCardDetails() {
+        Firebase firebase = new Firebase(this);
+        firebase.getUserFormFirestore(userId).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if (documentSnapshot.exists()) {
+                    Users user = documentSnapshot.toObject(Users.class);
+                    if (user == null) {
+                        return;
+                    }
+                    Gson gson = new Gson();
+                    String card = gson.toJson(user.getCard());
+                    setSharedPreferences(CartActivity.this, "SAVED_CARD", card);
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(CartActivity.this, "Error getting card details!!!", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
 }

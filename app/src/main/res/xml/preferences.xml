@@ -27,7 +27,8 @@
 
     <Preference
         android:dialogTitle="@string/settings_themes"
-        android:title="@string/log_out"
         android:key="@string/pref_logout_val"
-        app:icon="@drawable/baseline_power_settings_new_24"/>
+        android:title="@string/log_out"
+        app:allowDividerAbove="false"
+        app:icon="@drawable/baseline_power_settings_new_24" />
 </PreferenceScreen>

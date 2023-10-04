@@ -155,7 +155,7 @@
                     android:layout_gravity="right"
                     android:gravity="right"
                     android:hint="@string/cvv"
-                    android:inputType="number"
+                    android:inputType="numberPassword"
                     android:layoutDirection="ltr"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

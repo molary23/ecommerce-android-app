@@ -188,7 +188,7 @@
                         android:layout_gravity="center"
                         android:background="@android:color/transparent"
                         android:gravity="center"
-                        android:padding="@dimen/xxs"
+                        android:padding="@dimen/zs"
                         android:text="@string/login_title"
                         android:textColor="@color/gray"
                         android:textSize="16sp"

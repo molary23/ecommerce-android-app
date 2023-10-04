@@ -7,7 +7,7 @@
     tools:context=".viewmodels.DetailsActivity">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/addToCart"
+        android:id="@+id/btn_addToCart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -135,5 +135,27 @@
 
         </LinearLayout>
     </ScrollView>
-
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="0.5"
+        android:background="@android:color/transparent"
+        android:clickable="true"
+        android:contentDescription="@string/go_back"
+        android:elevation="@dimen/zs"
+        android:focusable="true"
+        android:src="@drawable/round_arrow_back_ios_24"
+        app:tint="@color/white"
+        app:backgroundTint="@color/gray"
+        app:elevation="@dimen/zs"
+        app:fabCustomSize="@dimen/lg"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.03"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.03"
+        app:shapeAppearanceOverlay="@style/fab_rounded" />
 </androidx.constraintlayout.widget.ConstraintLayout>
