@@ -67,9 +67,9 @@ public class ProductActivity extends AppCompatActivity implements ProductListene
 
 
         RequestManager requestManager = new RequestManager(this);
-        requestManager.getProductLists(listener, 0, 5, Section.RECOMMENDED);
-        requestManager.getProductLists(listener, 1, 10, Section.BEST);
-        requestManager.getProductLists(listener, 2, 10, Section.DEALS);
+        requestManager.getProductLists(listener, 0, 5,null, Section.RECOMMENDED);
+        requestManager.getProductLists(listener, 1, 10, null, Section.BEST);
+        requestManager.getProductLists(listener, 2, 10,null, Section.DEALS);
 
         CartItems cartItems = new CartItems(this);
         cartItems = new CartItems(this);

@@ -47,13 +47,11 @@ public class RegisterActivity extends AppCompatActivity {
 
 
 
-        txt_login.setOnClickListener((View view) -> navigateToLogin());
+        txt_login.setOnClickListener((View view) ->  navigateToView(this, LoginActivity.class));
         btn_register.setOnClickListener((View view) -> register());
     }
 
-    private void navigateToLogin() {
-        navigateToView(this, LoginActivity.class);
-    }
+
 
     private void register() {
         String username = tf_username.getText().toString().trim().toLowerCase(),

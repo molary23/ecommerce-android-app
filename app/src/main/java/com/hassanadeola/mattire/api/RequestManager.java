@@ -61,6 +61,11 @@ public class RequestManager {
                 @Query("limit") int limit
         );
 
+        @GET("products/search")
+        Call<List<Products>> searchProduct(
+                @Query("search") String search
+        );
+
         @GET("orders/user/products")
         Call<List<CartItem>> getCartItems(
                 @Query("userId") String userId
@@ -268,9 +273,15 @@ public class RequestManager {
 
     }
 
-    public void getProductLists(OnFetchProductListener<Products> listener, int page, int limit, Section section) {
+    public void getProductLists(OnFetchProductListener<Products> listener, int page, int limit, String search, Section section) {
         CallProductApi callProductApi = retrofit.create(CallProductApi.class);
-        Call<List<Products>> call = callProductApi.getProducts(page, limit);
+        Call<List<Products>> call;
+        if (section == Section.SEARCH) {
+            call = callProductApi.searchProduct(search);
+        } else {
+            call = callProductApi.getProducts(page, limit);
+        }
+
 
         try {
             call.enqueue(new Callback<List<Products>>() {

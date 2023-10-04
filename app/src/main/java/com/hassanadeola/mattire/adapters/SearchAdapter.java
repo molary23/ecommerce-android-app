@@ -16,7 +16,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class SearchAdapter extends RecyclerView.Adapter<SearchViewHolder>{
+public class SearchAdapter extends RecyclerView.Adapter<SearchViewHolder> {
 
     private final Context context;
 
@@ -54,6 +54,6 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchViewHolder>{
 
     @Override
     public int getItemCount() {
-        return 0;
+        return products.size();
     }
 }

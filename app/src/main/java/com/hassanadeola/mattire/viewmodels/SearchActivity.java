@@ -23,6 +23,7 @@ import com.hassanadeola.mattire.models.Products;
 import com.hassanadeola.mattire.utils.Section;
 import com.hassanadeola.mattire.utils.Utils;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -46,7 +47,6 @@ public class SearchActivity extends AppCompatActivity implements ProductListener
         txt_search = findViewById(R.id.txt_search);
 
         RequestManager requestManager = new RequestManager(this);
-        requestManager.getProductLists(listener, 0, 5, Section.SEARCH);
 
 
         txt_search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -55,13 +55,18 @@ public class SearchActivity extends AppCompatActivity implements ProductListener
             @Override
             public boolean onQueryTextSubmit(String s) {
                 toggleDisable(true, progressBar, getWindow());
-                requestManager.getProductLists(listener, 0, 5, Section.SEARCH);
+                requestManager.getProductLists(listener, 0, 5, s, Section.SEARCH);
                 return true;
             }
 
             @Override
             public boolean onQueryTextChange(String s) {
-                return s.isEmpty();
+                if (s.isEmpty()) {
+                    List<Products> list = new ArrayList<>();
+                    showSearchProducts(list);
+                    return false;
+                }
+                return true;
             }
         });
 
@@ -75,17 +80,16 @@ public class SearchActivity extends AppCompatActivity implements ProductListener
     }
 
 
-
-
     private final OnFetchProductListener<Products> listener =
             new OnFetchProductListener<Products>() {
                 @Override
                 public void onFetchData(List<Products> list, String message, Section section) {
                     if (list.isEmpty()) {
-                        Toast.makeText(SearchActivity.this, "Data not available",
+                        Toast.makeText(SearchActivity.this, "No products found",
                                 Toast.LENGTH_SHORT).show();
                         toggleDisable(false, progressBar, getWindow());
                     } else {
+
                         showSearchProducts(list);
                         toggleDisable(false, progressBar, getWindow());
                     }
