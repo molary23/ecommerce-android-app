@@ -18,6 +18,8 @@ public class ConfirmationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirmation);
 
+        Utils.changeTheme(this);
+
         btn_shopping = findViewById(R.id.btn_shopping);
 
         btn_shopping.setOnClickListener((View view) -> continueShopping());

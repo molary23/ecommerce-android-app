@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,7 +12,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#4DFFFFFF">
+        android:background="#4DFFFFFF"
+        >
 
         <include
             android:id="@+id/progressBar"
@@ -29,11 +30,12 @@
             android:layout_width="200dp"
             android:layout_height="80dp"
             android:layout_marginBottom="20dp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/launch_icon"
             app:layout_constraintBottom_toTopOf="@+id/materialCardView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
-            android:src="@drawable/round_arrow_back_ios_24" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/materialCardView"
@@ -59,7 +61,7 @@
                     android:shadowDy="5"
                     android:shadowRadius="3"
                     android:text="@string/register_title"
-                    android:textColor="#147DD1"
+                    android:textColor="@color/blue"
                     android:textSize="30sp"
                     android:textStyle="bold" />
 
@@ -83,7 +85,7 @@
                             android:id="@+id/tf_username"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
-                            android:drawableRight="@drawable/baseline_person_pin_24"/>
+                            android:drawableRight="@drawable/baseline_person_pin_24" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -98,7 +100,7 @@
                             android:id="@+id/tf_email"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
-                            android:drawableRight="@drawable/baseline_email_24"/>
+                            android:drawableRight="@drawable/baseline_email_24" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -113,7 +115,7 @@
                             android:id="@+id/tf_phone"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
-                            android:drawableRight="@drawable/baseline_local_phone_24"/>
+                            android:drawableRight="@drawable/baseline_local_phone_24" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -130,8 +132,7 @@
                             android:id="@+id/tf_password"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
-                            android:inputType="textPassword"
-                            />
+                            android:inputType="textPassword" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -149,8 +150,7 @@
                             android:id="@+id/tf_confirm_password"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
-                            android:inputType="textPassword"
-                           />
+                            android:inputType="textPassword" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -176,6 +176,7 @@
                     <com.google.android.material.textview.MaterialTextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/sm"
                         android:text="@string/member_already"
                         android:textAlignment="center"
                         android:textSize="16sp"
@@ -199,4 +200,4 @@
         </com.google.android.material.card.MaterialCardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</RelativeLayout>
+</LinearLayout>

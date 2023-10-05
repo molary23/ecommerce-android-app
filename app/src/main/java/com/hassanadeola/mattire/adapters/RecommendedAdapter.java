@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 
 import androidx.annotation.NonNull;
@@ -26,8 +27,6 @@ public class RecommendedAdapter extends RecyclerView.Adapter<ProductViewHolder> 
     private final ProductListener productListener;
 
 
-
-
     public RecommendedAdapter(Context context, List<Products> products, ProductListener listener) {
         this.context = context;
         this.products = products;
@@ -39,11 +38,16 @@ public class RecommendedAdapter extends RecyclerView.Adapter<ProductViewHolder> 
     @Override
     public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ProductViewHolder(LayoutInflater.from(context)
-                .inflate(R.layout.product_layout, parent, false));
+                .inflate(R.layout.recommended_product_layout, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
+        int width = 500,
+                height = 500;
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width, height);
+        holder.imageCard.setLayoutParams(params);
+        holder.imageCard.setRadius(250);
         holder.product_name.setText(products.get(position).getName());
         String price = "$" + products.get(position).getPrice();
         holder.product_price.setText(price);

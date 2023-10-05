@@ -9,7 +9,6 @@ import static com.hassanadeola.mattire.utils.Utils.createAlertDialog;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.util.Log;
 import android.widget.Toast;
@@ -48,7 +47,7 @@ public class Firebase {
 
     private final RequestManager requestManager;
 
-    private static ArrayList<Users> users = new ArrayList<>();
+    private static final ArrayList<Users> users = new ArrayList<>();
 
     public Firebase(Context context) {
         this.context = context;
@@ -78,9 +77,8 @@ public class Firebase {
                         if (task.isSuccessful()) {
                             FirebaseUser user = firebaseAuth.getCurrentUser();
                             if (user != null) {
+                                setSharedPreferences(context, "USER_ID", user.getUid());
                                 saveUser(user.getUid(), username, email, phone);
-                                navigateToView(context, ProductActivity.class);
-                                ((Activity) context).finish();
                             }
                         } else {
                             Toast.makeText(context, "Registration failed.",
@@ -139,24 +137,23 @@ public class Firebase {
     }
 
     public void logout() {
-        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
-        editor.clear();
-        editor.apply();
+        context.getSharedPreferences("userPreference", Context.MODE_PRIVATE).edit().clear().apply();
         firebaseAuth.signOut();
         ((Activity) context).finishAffinity();
         navigateToView(context, LoginActivity.class);
-
-
+        ((Activity) context).finish();
     }
 
     public void saveUser(String userId, String username, String email, String phone) {
-        getSharedPreferences(context, "token");
+        getUserSharedPreference(context, "token");
         Users user = new Users(username, email, phone, token);
 
         firebaseFirestore.collection("users")
                 .document(userId)
                 .set(user).addOnSuccessListener((listener) -> {
                     Toast.makeText(context, "Sign up Successful!", Toast.LENGTH_SHORT).show();
+                    navigateToView(context, ProductActivity.class);
+                    ((Activity) context).finish();
                 });
     }
 

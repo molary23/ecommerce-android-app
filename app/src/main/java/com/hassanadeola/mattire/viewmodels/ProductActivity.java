@@ -1,6 +1,7 @@
 package com.hassanadeola.mattire.viewmodels;
 
 
+import static com.hassanadeola.mattire.utils.Utils.changeTheme;
 import static com.hassanadeola.mattire.utils.Utils.navigateToView;
 import static com.hassanadeola.mattire.utils.Utils.toggleDisable;
 
@@ -57,7 +58,11 @@ public class ProductActivity extends AppCompatActivity implements ProductListene
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_product);
+        changeTheme(this);
+
+
 
         btn_logout = findViewById(R.id.btn_search);
         rootView = findViewById(R.id.rootView);
@@ -85,7 +90,10 @@ public class ProductActivity extends AppCompatActivity implements ProductListene
         invalidateOptionsMenu();
         CartItems cartItems = new CartItems(this);
         cartCount = cartItems.getCartItems().size();
-           }
+    }
+
+
+
 
     public void goToSearch() {
         navigateToView(this, SearchActivity.class);

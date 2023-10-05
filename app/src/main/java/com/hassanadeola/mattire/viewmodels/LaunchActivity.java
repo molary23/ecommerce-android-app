@@ -22,12 +22,10 @@ public class LaunchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launch);
 
-        Utils.changeStatusBarColor(getWindow());
-
         firebase = new Firebase(this);
         getCartItems();
 
-        String token = Utils.getSharedPreferences(this, "token");
+        String token = Utils.getUserSharedPreference(this, "token");
         if (token.isEmpty()) {
             Firebase firebase = new Firebase(this);
             firebase.getToken();

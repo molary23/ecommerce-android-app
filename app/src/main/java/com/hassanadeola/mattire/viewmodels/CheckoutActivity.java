@@ -2,14 +2,13 @@ package com.hassanadeola.mattire.viewmodels;
 
 import static android.app.PendingIntent.getActivity;
 
+import static com.hassanadeola.mattire.utils.Utils.*;
 import static com.hassanadeola.mattire.utils.Utils.createAlertDialog;
-import static com.hassanadeola.mattire.utils.Utils.getSharedPreferences;
 import static com.hassanadeola.mattire.utils.Utils.navigateToView;
 import static com.hassanadeola.mattire.utils.Utils.removeSharedPreferences;
 import static com.hassanadeola.mattire.utils.Utils.toggleDisable;
 import static com.hassanadeola.mattire.utils.Utils.validateUserInput;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 
@@ -23,23 +22,17 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textview.MaterialTextView;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.gson.Gson;
 import com.hassanadeola.mattire.R;
 import com.hassanadeola.mattire.api.RequestManager;
 import com.hassanadeola.mattire.listeners.PaymentListener;
 import com.hassanadeola.mattire.models.Card;
-import com.hassanadeola.mattire.models.CartItem;
 import com.hassanadeola.mattire.models.Firebase;
 import com.hassanadeola.mattire.models.Users;
 import com.hassanadeola.mattire.utils.CartItems;
 import com.hassanadeola.mattire.utils.Utils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Objects;
 
 public class CheckoutActivity extends AppCompatActivity {
@@ -76,7 +69,8 @@ public class CheckoutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
 
-        Utils.createActionBar(Objects.requireNonNull(getSupportActionBar()));
+        createActionBar(Objects.requireNonNull(getSupportActionBar()));
+        changeTheme(this);
 
         card_number = findViewById(R.id.card_number);
         month = findViewById(R.id.month);
@@ -111,7 +105,7 @@ public class CheckoutActivity extends AppCompatActivity {
         mt_total_title = ln_total.findViewById(R.id.title);
         mt_total_title.setText(R.string.total);
 
-        userId = Utils.getSharedPreferences(this, "USER_ID");
+        userId = Utils.getUserSharedPreference(this, "USER_ID");
         requestManager = new RequestManager(this);
 
         CartItems cartItems = new CartItems(this);
@@ -137,29 +131,8 @@ public class CheckoutActivity extends AppCompatActivity {
     }
 
     public void getCardDetails() {
-     /*   firebase.getUserFormFirestore(userId).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                if (documentSnapshot.exists()) {
-                    Users user = documentSnapshot.toObject(Users.class);
-                    if (user == null) {
-                        return;
-                    }
-                    setUser(user);
-                    if (user.getCard() != null) {
-                      //  onCreateDialog();
-                    }
-                }
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(CheckoutActivity.this, "Error getting card details!!!", Toast.LENGTH_LONG).show();
-            }
-        });*/
-
-        Gson gson = new Gson();
-        String cardString = Utils.getSharedPreferences(CheckoutActivity.this, "SAVED_CARD");
+         Gson gson = new Gson();
+        String cardString = Utils.getUserSharedPreference(CheckoutActivity.this, "SAVED_CARD");
         if (cardString != null ) {
              card = gson.fromJson(cardString, Card.class);
             if(card != null) {

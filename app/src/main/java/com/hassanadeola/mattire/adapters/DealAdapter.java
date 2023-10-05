@@ -38,16 +38,16 @@ public class DealAdapter  extends RecyclerView.Adapter<ProductViewHolder>{
     @Override
     public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ProductViewHolder(LayoutInflater.from(context)
-                .inflate(R.layout.product_layout, parent, false));
+                .inflate(R.layout.deal_product_layout, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
-       int  width = 600,
+      /* int  width = 600,
         height = 600;
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width, height);
         holder.imageCard.setLayoutParams(params);
-        holder.imageCard.setRadius(20);
+        holder.imageCard.setRadius(20);*/
         holder.product_name.setText(products.get(position).getName());
         String price = "$" + products.get(position).getPrice();
         holder.product_price.setText(price);

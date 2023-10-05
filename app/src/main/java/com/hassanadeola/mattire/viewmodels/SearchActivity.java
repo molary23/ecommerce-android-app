@@ -1,5 +1,6 @@
 package com.hassanadeola.mattire.viewmodels;
 
+import static com.hassanadeola.mattire.utils.Utils.*;
 import static com.hassanadeola.mattire.utils.Utils.toggleDisable;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -41,8 +42,8 @@ public class SearchActivity extends AppCompatActivity implements ProductListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-        Utils.createActionBar(Objects.requireNonNull(getSupportActionBar()));
-
+        createActionBar(Objects.requireNonNull(getSupportActionBar()));
+        changeTheme(this);
         progressBar = findViewById(R.id.progressBar);
         txt_search = findViewById(R.id.txt_search);
 

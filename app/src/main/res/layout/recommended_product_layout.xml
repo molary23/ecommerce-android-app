@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:layout_marginEnd="@dimen/md"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:id="@+id/product_box">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/imageCard"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/xs"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="75dp"
+        app:cardElevation="@dimen/xs"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="@color/white">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/product_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:foregroundGravity="center"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/ic_launcher_background" />
+    </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/product_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/product_name"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="@dimen/xs"
+            android:layout_marginTop="@dimen/xs"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/product_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+
+            android:gravity="center"
+            android:text="@string/product_price"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+

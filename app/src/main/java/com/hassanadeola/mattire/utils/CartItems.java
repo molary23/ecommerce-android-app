@@ -1,11 +1,9 @@
 package com.hassanadeola.mattire.utils;
 
 
-import static android.content.ContentValues.TAG;
 import static com.hassanadeola.mattire.utils.Utils.*;
 
 import android.content.Context;
-import android.util.Log;
 
 
 import com.google.gson.Gson;
@@ -27,13 +25,18 @@ public class CartItems {
 
     public CartItems(Context context) {
         this.context = context;
-        this.userId = getSharedPreferences(context, "USER_ID");
+        this.userId = getUserSharedPreference(context, "USER_ID");
         this.requestManager = new RequestManager(context);
         Gson gson = new Gson();
-        String cartsString = getSharedPreferences(context, "CART_ITEMS");
-        if (cartsString != null ) {
+        String cartsString = getUserSharedPreference(context, "CART_ITEMS");
+        if (cartsString != null) {
             CartItem[] cartItem = gson.fromJson(cartsString, CartItem[].class);
-            this.cartItems = new ArrayList<>(Arrays.asList(cartItem));
+            if (cartItem != null) {
+                this.cartItems = new ArrayList<>(Arrays.asList(cartItem));
+            } else {
+                this.cartItems = new ArrayList<>();
+            }
+
         }
 
 

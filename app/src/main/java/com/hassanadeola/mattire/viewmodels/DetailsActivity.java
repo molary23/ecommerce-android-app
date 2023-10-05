@@ -1,5 +1,7 @@
 package com.hassanadeola.mattire.viewmodels;
 
+import static com.hassanadeola.mattire.utils.Utils.*;
+
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -37,7 +39,7 @@ public class DetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
-        Utils.changeStatusBarColor(getWindow());
+        changeTheme(this);
 
         product = (Products) getIntent().getSerializableExtra("product");
 

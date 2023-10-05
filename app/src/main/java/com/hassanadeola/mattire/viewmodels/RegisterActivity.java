@@ -1,5 +1,7 @@
 package com.hassanadeola.mattire.viewmodels;
 
+import static com.hassanadeola.mattire.utils.Utils.*;
+import static com.hassanadeola.mattire.utils.Utils.changeTheme;
 import static com.hassanadeola.mattire.utils.Utils.createAlertDialog;
 import static com.hassanadeola.mattire.utils.Utils.navigateToView;
 import static com.hassanadeola.mattire.utils.Utils.validateUserInput;
@@ -31,8 +33,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        Utils.changeStatusBarColor(getWindow());
-
+        changeTheme(this);
 
         txt_login = findViewById(R.id.txt_login);
         btn_register = findViewById(R.id.btn_register);
@@ -69,11 +70,9 @@ public class RegisterActivity extends AppCompatActivity {
                 builder.show();
                 return;
             }
-            Utils.toggleDisable(true, progressBar, getWindow());
+            toggleDisable(true, progressBar, getWindow());
             Firebase firebase = new Firebase(this);
             firebase.createUser(email, password, username, phone);
-            Utils.toggleDisable(false, progressBar, getWindow());
-
         } else {
             builder = createAlertDialog(this, "Wrong Credentials",
                     "Please fill all fields");

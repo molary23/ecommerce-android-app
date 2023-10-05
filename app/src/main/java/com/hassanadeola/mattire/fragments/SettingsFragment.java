@@ -1,27 +1,25 @@
 package com.hassanadeola.mattire.fragments;
 
 
-import static com.google.gson.internal.$Gson$Types.arrayOf;
-
-import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 
 import androidx.preference.PreferenceFragmentCompat;
+import androidx.preference.PreferenceManager;
 
 import com.hassanadeola.mattire.R;
 import com.hassanadeola.mattire.models.Firebase;
+import com.hassanadeola.mattire.utils.DataStore;
+import com.hassanadeola.mattire.utils.Utils;
+
+import java.util.Objects;
 
 
 public class SettingsFragment extends PreferenceFragmentCompat implements Preference.OnPreferenceChangeListener,
@@ -31,8 +29,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
     Preference log_out;
 
     SharedPreferences sharedPreferences;
-
-    String uuid = null, theme = null;
 
 
     @Override
@@ -62,6 +58,15 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
             }
         }
 
+        if (preferenceKey.equalsIgnoreCase("pref_theme_val")) {
+            requireActivity().finish();
+            requireActivity().overridePendingTransition(0, 0);
+            startActivity(requireActivity().getIntent());
+            requireActivity().overridePendingTransition(0, 0);
+            themes.setSummary(choice);
+            Toast.makeText(requireActivity(), "Theme Changed", Toast.LENGTH_SHORT).show();
+        }
+
         return true;
     }
 
@@ -69,6 +74,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         setPreferencesFromResource(R.xml.preferences, rootKey);
         themes = findPreference("pref_theme_val");
+
         contact = findPreference("pref_contact_val");
         log_out = findPreference("pref_logout_val");
         if (log_out != null) {
@@ -79,6 +85,17 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
             contact.setOnPreferenceChangeListener(this);
         }
 
+        DataStore dataStore = new DataStore(requireActivity());
+        PreferenceManager preferenceManager = getPreferenceManager();
+        preferenceManager.setPreferenceDataStore(dataStore);
+        String savedTheme = Utils.getUserSharedPreference(requireActivity(), "THEME");
+        if (savedTheme != null && !savedTheme.isEmpty()) {
+            Objects.requireNonNull(themes).setValue(savedTheme);
+            themes.setSummary(savedTheme);
+
+        }
+
+        themes.setOnPreferenceChangeListener(this);
     }
 
     @Override
@@ -87,8 +104,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
         if (preferenceKey.equalsIgnoreCase("pref_logout_val")) {
             Firebase firebase = new Firebase(requireActivity());
             firebase.logout();
-        } else if (preferenceKey.equalsIgnoreCase("pref_contact_val")) {
-
         }
         return true;
     }

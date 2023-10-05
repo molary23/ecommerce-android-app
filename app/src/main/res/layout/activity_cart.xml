@@ -10,10 +10,9 @@
         android:id="@+id/cartRecyclerView"
         layout="@layout/recycler_view" />
 
-    <com.google.android.material.card.MaterialCardView
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="@dimen/zs"
         app:cardElevation="@dimen/sm"
         app:layout_constraintBottom_toBottomOf="@+id/cartRecyclerView"
@@ -70,8 +69,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/check_out"
-                android:visibility="invisible" />
+                android:visibility="invisible"
+                app:backgroundTint="@color/blue" />
         </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

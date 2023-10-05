@@ -1,10 +1,10 @@
 package com.hassanadeola.mattire.viewmodels;
 
+import static com.hassanadeola.mattire.utils.Utils.*;
 import static com.hassanadeola.mattire.utils.Utils.createAlertDialog;
 import static com.hassanadeola.mattire.utils.Utils.setSharedPreferences;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -54,9 +54,10 @@ public class CartActivity extends AppCompatActivity implements CartListener {
         setContentView(R.layout.activity_cart);
 
 
-        Utils.createActionBar(Objects.requireNonNull(getSupportActionBar()));
+        createActionBar(Objects.requireNonNull(getSupportActionBar()));
+        changeTheme(this);
 
-        userId = Utils.getSharedPreferences(this, "USER_ID");
+        userId = Utils.getUserSharedPreference(this, "USER_ID");
 
         sub_price = findViewById(R.id.sub_price);
         btn_check_out = findViewById(R.id.btn_check_out);
@@ -73,7 +74,7 @@ public class CartActivity extends AppCompatActivity implements CartListener {
 
         getCardDetails();
 
-        btn_check_out.setOnClickListener((View view) -> Utils.navigateToView(this, CheckoutActivity.class));
+        btn_check_out.setOnClickListener((View view) -> navigateToView(this, CheckoutActivity.class));
     }
 
 
