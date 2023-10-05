@@ -25,7 +25,7 @@ public class Utils {
     }
 
     public static boolean validateUserInput(String text) {
-        return text.trim().length() > 5;
+        return text.trim().length() >= 5;
     }
 
     public static boolean validateUserInput(String text, int len) {

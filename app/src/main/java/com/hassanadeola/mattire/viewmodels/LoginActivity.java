@@ -21,13 +21,13 @@ public class LoginActivity extends AppCompatActivity {
 
     Button btn_login;
     EditText tf_username, tf_password;
-    private FrameLayout progressBar;
+    FrameLayout progressBar;
     MaterialTextView txt_register;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        Utils.changeStatusBarColor(getWindow());
+        changeStatusBarColor(getWindow());
 
 
         btn_login =  findViewById(R.id.btn_login);
@@ -39,7 +39,6 @@ public class LoginActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
 
         txt_register.setOnClickListener((View view) -> navigateToRegister());
-
 
 
         btn_login.setOnClickListener((View view) -> login());
@@ -55,9 +54,9 @@ public class LoginActivity extends AppCompatActivity {
                 password = tf_password.getText().toString();
 
         if (validateUserInput(username) && validateUserInput(password)) {
-            Utils.toggleDisable(true, progressBar, getWindow());
+            toggleDisable(true, progressBar, getWindow());
             Firebase firebase = new Firebase(this);
-            Utils.toggleDisable(false, progressBar, getWindow());
+            toggleDisable(false, progressBar, getWindow());
             firebase.login(username, password);
         } else {
             AlertDialog.Builder builder = createAlertDialog(this, "Wrong Credentials",

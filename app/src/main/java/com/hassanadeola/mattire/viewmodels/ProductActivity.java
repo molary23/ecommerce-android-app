@@ -53,7 +53,6 @@ public class ProductActivity extends AppCompatActivity implements ProductListene
 
     int cartCount = 0;
 
-    // CartItems cartItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,15 +87,6 @@ public class ProductActivity extends AppCompatActivity implements ProductListene
         cartCount = cartItems.getCartItems().size();
            }
 
-   /* @Override
-    protected void onResume() {
-        super.onResume();
-        CartItems cartItems = new CartItems(this);
-        cartCount = cartItems.getCartItems().size();
-        Toast.makeText(ProductActivity.this, "resume" + String.valueOf(cartItems.getCartItems().size()),
-                Toast.LENGTH_SHORT).show();
-    }
-*/
     public void goToSearch() {
         navigateToView(this, SearchActivity.class);
     }

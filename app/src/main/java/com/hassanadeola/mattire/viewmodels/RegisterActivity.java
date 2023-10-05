@@ -21,8 +21,8 @@ import com.hassanadeola.mattire.utils.Utils;
 public class RegisterActivity extends AppCompatActivity {
 
     EditText tf_username, tf_email, tf_password, tf_confirm_password, tf_phone;
-    Button  btn_register;
-    private FrameLayout progressBar;
+    Button btn_register;
+    FrameLayout progressBar;
 
     MaterialTextView txt_login;
 
@@ -34,23 +34,21 @@ public class RegisterActivity extends AppCompatActivity {
         Utils.changeStatusBarColor(getWindow());
 
 
-        txt_login =  findViewById(R.id.txt_login);
-        btn_register =  findViewById(R.id.btn_register);
+        txt_login = findViewById(R.id.txt_login);
+        btn_register = findViewById(R.id.btn_register);
 
-        tf_username =  findViewById(R.id.tf_username);
-        tf_password =  findViewById(R.id.tf_password);
-        tf_email =  findViewById(R.id.tf_email);
-        tf_confirm_password =  findViewById(R.id.tf_confirm_password);
-        tf_phone =  findViewById(R.id.tf_phone);
+        tf_username = findViewById(R.id.tf_username);
+        tf_password = findViewById(R.id.tf_password);
+        tf_email = findViewById(R.id.tf_email);
+        tf_confirm_password = findViewById(R.id.tf_confirm_password);
+        tf_phone = findViewById(R.id.tf_phone);
 
         progressBar = findViewById(R.id.progressBar);
 
 
-
-        txt_login.setOnClickListener((View view) ->  navigateToView(this, LoginActivity.class));
+        txt_login.setOnClickListener((View view) -> navigateToView(this, LoginActivity.class));
         btn_register.setOnClickListener((View view) -> register());
     }
-
 
 
     private void register() {

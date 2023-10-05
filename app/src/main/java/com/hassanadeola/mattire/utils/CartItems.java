@@ -33,7 +33,7 @@ public class CartItems {
         String cartsString = getSharedPreferences(context, "CART_ITEMS");
         if (cartsString != null ) {
             CartItem[] cartItem = gson.fromJson(cartsString, CartItem[].class);
-            this.cartItems = new ArrayList<CartItem>(Arrays.asList(cartItem));
+            this.cartItems = new ArrayList<>(Arrays.asList(cartItem));
         }
 
 

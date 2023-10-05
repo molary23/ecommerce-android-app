@@ -84,10 +84,9 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
     @Override
     public boolean onPreferenceClick(@NonNull Preference preference) {
         String preferenceKey = preference.getKey();
-        Log.d("TAG", preferenceKey);
         if (preferenceKey.equalsIgnoreCase("pref_logout_val")) {
-            //   Firebase firebase = new Firebase(requireActivity());
-            //  firebase.logout();
+            Firebase firebase = new Firebase(requireActivity());
+            firebase.logout();
         } else if (preferenceKey.equalsIgnoreCase("pref_contact_val")) {
 
         }

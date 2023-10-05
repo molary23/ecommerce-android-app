@@ -9,12 +9,14 @@ import static com.hassanadeola.mattire.utils.Utils.createAlertDialog;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.preference.PreferenceManager;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -137,10 +139,13 @@ public class Firebase {
     }
 
     public void logout() {
-        removeSharedPreferences(context, "USER_ID");
+        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
+        editor.clear();
+        editor.apply();
         firebaseAuth.signOut();
+        ((Activity) context).finishAffinity();
         navigateToView(context, LoginActivity.class);
-        ((Activity) context).finish();
+
 
     }
 
@@ -168,7 +173,7 @@ public class Firebase {
     public Task<DocumentSnapshot> getUserFormFirestore(String userId) {
         return firebaseFirestore.collection("users").document(userId)
                 .get();
-            }
+    }
 
 
     public void getToken() {
@@ -181,6 +186,6 @@ public class Firebase {
                     // Get new FCM registration token
 
                     setSharedPreferences(context, "token", task.getResult());
-                               });
+                });
     }
 }
