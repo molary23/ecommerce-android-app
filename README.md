@@ -12,7 +12,7 @@ E-commerce Android app using Java, Springboot, Firebase, MongoDB, and Azure
 9. Order Confirmation
 10. Settings
 ### Tech
-1. Adobe XD to design UI
+1. Adobe XD to design UI, view design via [XD](https://xd.adobe.com/view/e1b920f4-9667-45b3-8212-6fe13303aa24-b4ea/)
 2. Backend developed using Java and Spingboot for products and order flow repo available via [Github](https://github.com/molary23/ecommerce-backend-java-sping)
 3. MongoDB for database
 4. Firebase for user registration and saving user basic details
