@@ -39,7 +39,7 @@ public class DetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
-        changeTheme(this);
+        changeTheme(this, getWindow(), getResources(), null);
 
         product = (Products) getIntent().getSerializableExtra("product");
 

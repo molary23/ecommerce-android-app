@@ -20,7 +20,7 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         createActionBar(Objects.requireNonNull(getSupportActionBar()));
-        changeTheme(this);
+        changeTheme(this, getWindow(), getResources(), null);
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.settings_container, new SettingsFragment())

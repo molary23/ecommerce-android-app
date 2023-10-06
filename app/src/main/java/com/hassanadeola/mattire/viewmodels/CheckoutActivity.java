@@ -70,7 +70,7 @@ public class CheckoutActivity extends AppCompatActivity {
         setContentView(R.layout.activity_checkout);
 
         createActionBar(Objects.requireNonNull(getSupportActionBar()));
-        changeTheme(this);
+        changeTheme(this, getWindow(), getResources(), null);
 
         card_number = findViewById(R.id.card_number);
         month = findViewById(R.id.month);

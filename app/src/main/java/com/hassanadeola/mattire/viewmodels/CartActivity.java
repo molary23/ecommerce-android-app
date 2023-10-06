@@ -55,7 +55,7 @@ public class CartActivity extends AppCompatActivity implements CartListener {
 
 
         createActionBar(Objects.requireNonNull(getSupportActionBar()));
-        changeTheme(this);
+        changeTheme(this, getWindow(), getResources(), null);
 
         userId = Utils.getUserSharedPreference(this, "USER_ID");
 
@@ -63,10 +63,8 @@ public class CartActivity extends AppCompatActivity implements CartListener {
         btn_check_out = findViewById(R.id.btn_check_out);
 
 
-
-
         cartItems = new CartItems(this);
-       cartList = cartItems.getCartItems();
+        cartList = cartItems.getCartItems();
         checkCartList(cartList);
 
         String price = "$" + cartItems.getTotal();
@@ -94,13 +92,13 @@ public class CartActivity extends AppCompatActivity implements CartListener {
         cartList = cartItems.getCartItems();
         checkCartList(cartList);
 
-      //  showCartItems(cartItems.getCartItems());
+        //  showCartItems(cartItems.getCartItems());
     }
 
     @Override
     public void onReduceProduct(String productId) {
         cartItems.reduceProductInCart(productId);
-       // showCartItems(cartItems.getCartItems());
+        // showCartItems(cartItems.getCartItems());
         cartList = cartItems.getCartItems();
         checkCartList(cartList);
     }
@@ -108,7 +106,7 @@ public class CartActivity extends AppCompatActivity implements CartListener {
     @Override
     public void onIncreaseProduct(String productId) {
         cartItems.increaseProductInCart(productId);
-      //  showCartItems(cartItems.getCartItems());
+        //  showCartItems(cartItems.getCartItems());
         cartList = cartItems.getCartItems();
         checkCartList(cartList);
     }
@@ -140,7 +138,7 @@ public class CartActivity extends AppCompatActivity implements CartListener {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 cartItems.clearCart();
-               // showCartItems(cartItems.getCartItems());
+                // showCartItems(cartItems.getCartItems());
                 cartList = cartItems.getCartItems();
                 checkCartList(cartList);
             }
@@ -148,13 +146,15 @@ public class CartActivity extends AppCompatActivity implements CartListener {
         builder.show();
     }
 
-    public void checkCartList(List<CartItem> cartList){
+    public void checkCartList(List<CartItem> cartList) {
         showCartItems(cartList);
-        if(cartList.size() > 0){
+        if (cartList.size() > 0) {
             btn_check_out.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             btn_check_out.setVisibility(View.INVISIBLE);
         }
+        String price = "$" + cartItems.getTotal();
+        sub_price.setText(price);
     }
 
     public void getCardDetails() {

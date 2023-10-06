@@ -58,17 +58,13 @@ public class ProductActivity extends AppCompatActivity implements ProductListene
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_product);
-        changeTheme(this);
-
-
+        changeTheme(this, getWindow(), getResources(), null);
 
         btn_logout = findViewById(R.id.btn_search);
         rootView = findViewById(R.id.rootView);
         progressBar = findViewById(R.id.progressBar);
-        btn_logout.setOnClickListener((View view) -> goToSearch());
-
+        btn_logout.setOnClickListener((View view) -> navigateToView(this, SearchActivity.class));
 
         RequestManager requestManager = new RequestManager(this);
         requestManager.getProductLists(listener, 0, 5,null, Section.RECOMMENDED);
@@ -95,9 +91,7 @@ public class ProductActivity extends AppCompatActivity implements ProductListene
 
 
 
-    public void goToSearch() {
-        navigateToView(this, SearchActivity.class);
-    }
+
 
     private final OnFetchProductListener<Products> listener =
             new OnFetchProductListener<Products>() {

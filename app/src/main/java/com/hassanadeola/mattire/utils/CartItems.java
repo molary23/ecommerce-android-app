@@ -1,9 +1,11 @@
 package com.hassanadeola.mattire.utils;
 
 
+import static android.content.ContentValues.TAG;
 import static com.hassanadeola.mattire.utils.Utils.*;
 
 import android.content.Context;
+import android.util.Log;
 
 
 import com.google.gson.Gson;
@@ -38,9 +40,7 @@ public class CartItems {
             }
 
         }
-
-
-    }
+            }
 
     public void setCartItems(List<CartItem> cartItems) {
         this.cartItems = cartItems;
@@ -91,7 +91,7 @@ public class CartItems {
     public void reduceProductInCart(String productId) {
         boolean isFound = isFound(productId);
 
-        requestManager.reduceProductInCart(productId, userId);
+        requestManager.reduceProductInCart(userId,productId);
         if (isFound) {
             for (CartItem cartItem : cartItems) {
                 //  String id = cartItem.getProduct().getId();
@@ -108,7 +108,7 @@ public class CartItems {
 
     public void increaseProductInCart(String productId) {
         boolean isFound = isFound(productId);
-        requestManager.addToCart(productId, userId);
+        requestManager.addToCart(userId,productId);
         // Increase in DB
         if (isFound) {
             for (CartItem cartItem : cartItems) {

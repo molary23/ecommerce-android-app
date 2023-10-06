@@ -43,7 +43,7 @@ public class SearchActivity extends AppCompatActivity implements ProductListener
         setContentView(R.layout.activity_search);
 
         createActionBar(Objects.requireNonNull(getSupportActionBar()));
-        changeTheme(this);
+        changeTheme(this, getWindow(), getResources(), null);
         progressBar = findViewById(R.id.progressBar);
         txt_search = findViewById(R.id.txt_search);
 
