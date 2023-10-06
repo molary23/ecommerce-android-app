@@ -37,7 +37,7 @@ import retrofit2.http.Query;
 
 public class RequestManager {
 
-    private final String BASE_URL = "http://10.0.0.151:8080/api/";
+    private final String BASE_URL = "https://ecommerce-spring.orangerock-dbb80cfc.eastus.azurecontainerapps.io/api/";
 
     Context context;
 

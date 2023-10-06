@@ -72,7 +72,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
             toggleDisable(true, progressBar, getWindow());
             Firebase firebase = new Firebase(this);
-            firebase.createUser(email, password, username, phone);
+            firebase.createUser(email, password, username, phone, progressBar, getWindow());
         } else {
             builder = createAlertDialog(this, "Wrong Credentials",
                     "Please fill all fields");

@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.card.MaterialCardView;
@@ -21,7 +22,7 @@ public class ProductViewHolder extends RecyclerView.ViewHolder{
 
     public LinearLayout product_box;
 
-    public MaterialCardView imageCard;
+    public CardView imageCard;
 
     public ProductViewHolder(@NonNull View itemView) {
         super(itemView);

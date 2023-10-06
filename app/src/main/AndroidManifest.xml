@@ -19,7 +19,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Mattire"
         tools:targetApi="31"
-        android:hardwareAccelerated="false"
         android:largeHeap="true">
         <activity
             android:name=".viewmodels.SettingsActivity"
@@ -40,7 +39,8 @@
         <activity
             android:name=".viewmodels.ProductActivity"
             android:exported="false"
-            android:label="Products"/>
+            android:label="Products"
+            android:hardwareAccelerated="true"/>
         <activity
             android:name=".viewmodels.CartActivity"
             android:exported="false"
@@ -83,11 +83,13 @@
         <activity
             android:name=".viewmodels.RegisterActivity"
             android:exported="false"
-            android:theme="@style/Theme.Mattire.No.ActionBar"/>
+            android:theme="@style/Theme.Mattire.No.ActionBar"
+            android:hardwareAccelerated="false"/>
         <activity
             android:name=".viewmodels.LoginActivity"
             android:exported="false"
-            android:theme="@style/Theme.Mattire.No.ActionBar"/>
+            android:theme="@style/Theme.Mattire.No.ActionBar"
+            android:hardwareAccelerated="false"/>
     </application>
 
 </manifest>

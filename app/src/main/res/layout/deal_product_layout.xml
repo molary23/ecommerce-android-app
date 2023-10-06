@@ -11,7 +11,7 @@
     android:orientation="vertical"
     android:id="@+id/product_box">
 
-    <com.google.android.material.card.MaterialCardView
+    <androidx.cardview.widget.CardView
         android:id="@+id/imageCard"
         android:layout_width="150dp"
         android:layout_height="150dp"
@@ -34,7 +34,7 @@
             android:foregroundGravity="center"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/ic_launcher_background" />
-    </com.google.android.material.card.MaterialCardView>
+    </androidx.cardview.widget.CardView>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/product_name"

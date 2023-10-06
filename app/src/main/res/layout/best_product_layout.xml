@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools"
+    android:id="@+id/product_box"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_centerInParent="true"
     android:layout_centerHorizontal="true"
     android:layout_centerVertical="true"
     android:layout_marginEnd="@dimen/md"
     android:gravity="center"
-    android:orientation="vertical"
-    android:id="@+id/product_box">
+    android:orientation="vertical">
 
 
-    <com.google.android.material.card.MaterialCardView
+    <androidx.cardview.widget.CardView
         android:id="@+id/imageCard"
         android:layout_width="300dp"
         android:layout_height="300dp"
@@ -24,8 +25,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:strokeColor="@color/white">
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/product_image"
@@ -35,19 +35,19 @@
             android:foregroundGravity="center"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/ic_launcher_background" />
-    </com.google.android.material.card.MaterialCardView>
+    </androidx.cardview.widget.CardView>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/product_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="@dimen/xs"
+        android:layout_marginBottom="@dimen/xs"
         android:gravity="center"
         android:text="@string/product_name"
         android:textSize="14sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="@dimen/xs"
-        android:layout_marginTop="@dimen/xs"/>
+        android:textStyle="bold" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/product_price"

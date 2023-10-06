@@ -11,6 +11,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import android.util.Log;
+import android.view.View;
+import android.view.Window;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -67,7 +70,7 @@ public class Firebase {
         return isLoggedIn;
     }
 
-    public void createUser(String email, String password, String username, String phone) {
+    public void createUser(String email, String password, String username, String phone, FrameLayout progressBar, Window window) {
 
         // Check if user already exists
         firebaseAuth.createUserWithEmailAndPassword(email, password)
@@ -81,6 +84,7 @@ public class Firebase {
                                 saveUser(user.getUid(), username, email, phone);
                             }
                         } else {
+                            toggleDisable(false, progressBar, window);
                             Toast.makeText(context, "Registration failed.",
                                     Toast.LENGTH_SHORT).show();
 
@@ -89,7 +93,7 @@ public class Firebase {
                 });
     }
 
-    public void login(String email, String password) {
+    public void login(String email, String password, FrameLayout progressBar, Window window) {
 
         firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener((Activity) context, new OnCompleteListener<AuthResult>() {
@@ -105,7 +109,7 @@ public class Firebase {
                             }
                         } else {
                             // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithEmail:failure", task.getException());
+                            toggleDisable(false, progressBar, window);
                             AlertDialog.Builder builder = createAlertDialog(context, "Wrong Credentials",
                                     "Wrong Email Address or Password supplied.");
 

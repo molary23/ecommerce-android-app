@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
         if (validateUserInput(username) && validateUserInput(password)) {
             toggleDisable(true, progressBar, getWindow());
             Firebase firebase = new Firebase(this);
-            firebase.login(username, password);
+            firebase.login(username, password, progressBar, getWindow());
         } else {
             AlertDialog.Builder builder = createAlertDialog(this, "Wrong Credentials",
                     "Please enter a username and password at least 5 characters long");
