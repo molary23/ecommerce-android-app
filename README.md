@@ -15,7 +15,8 @@ E-commerce Android app using Java, Springboot, Firebase, MongoDB, and Azure
 1. Adobe XD to design UI, view design via [XD](https://xd.adobe.com/view/e1b920f4-9667-45b3-8212-6fe13303aa24-b4ea/)
 2. Backend developed using Java and Spingboot for products and order flow repo available via [Github](https://github.com/molary23/ecommerce-backend-java-sping)
 3. MongoDB for database
-4. Firebase for user registration and saving user basic details
-5. Azure for hosting the backend application
-6. Android studio🙄 for developing android app
+4. Firebase authentication for user login credentials.
+5. Firebase Firestore for user registration and saving basic information about user
+6. Azure for hosting the backend application
+7. Android studio🙄 for developing Android app
 
