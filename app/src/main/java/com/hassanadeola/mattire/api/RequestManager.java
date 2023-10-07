@@ -2,8 +2,7 @@ package com.hassanadeola.mattire.api;
 
 import static android.content.ContentValues.TAG;
 
-import static com.hassanadeola.mattire.utils.Utils.navigateToView;
-import static com.hassanadeola.mattire.utils.Utils.removeSharedPreferences;
+
 import static com.hassanadeola.mattire.utils.Utils.setSharedPreferences;
 
 import android.content.Context;
@@ -18,7 +17,6 @@ import com.hassanadeola.mattire.models.CartItem;
 import com.hassanadeola.mattire.models.Products;
 import com.hassanadeola.mattire.utils.Section;
 import com.hassanadeola.mattire.utils.Utils;
-import com.hassanadeola.mattire.viewmodels.ConfirmationActivity;
 
 import java.util.List;
 
@@ -41,10 +39,6 @@ public class RequestManager {
 
     Context context;
 
-  /*  Gson gson = new GsonBuilder()
-            .setLenient()
-            .create();*/
-
     Retrofit retrofit = new Retrofit.Builder().baseUrl(BASE_URL)
             .addConverterFactory(ScalarsConverterFactory.create())
             .addConverterFactory(GsonConverterFactory
@@ -63,7 +57,7 @@ public class RequestManager {
 
         @GET("products/search")
         Call<List<Products>> searchProduct(
-                @Query("search") String search
+                @Query("q") String search
         );
 
         @GET("orders/user/products")
@@ -71,7 +65,6 @@ public class RequestManager {
                 @Query("userId") String userId
         );
 
-        //  @Headers("Content-Type: application/json")
         @FormUrlEncoded
         @POST("orders/add")
         Call<String> addToCart(

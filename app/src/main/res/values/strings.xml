@@ -47,7 +47,7 @@
     <string name="qty">5</string>
     <string name="in_stock">In Stock</string>
     <string name="recommended">RECOMMENDED</string>
-    <string name="best_seller">BEST SELLER</string>
+    <string name="best_seller">BEST SELLERS</string>
     <string name="deals">DEALS</string>
     <string name="dummy_rating">4.5</string>
     <string name="add_to_cart">Add to Cart</string>
@@ -71,7 +71,7 @@
     <string name="continue_shopping">Continue Shopping</string>
     <string name="clear_all_cart_items">Clear all cart items</string>
     <string name="go_back">Go Back</string>
-    <string name="search_for_products">Search for products...</string>
+    <string name="search_for_products">Search for products…</string>
     <string-array name="pref_theme">
         <item>Light</item>
         <item>Dark</item>

@@ -24,7 +24,7 @@
         android:layout_marginBottom="80dp"
         android:text="@string/brand_motto"
         android:textColor="@color/gray"
-        android:textSize="20sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

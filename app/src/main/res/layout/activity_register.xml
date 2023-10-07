@@ -176,11 +176,11 @@
                     <com.google.android.material.textview.MaterialTextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginBottom="@dimen/sm"
+                        android:layout_marginBottom="@dimen/xs"
                         android:text="@string/member_already"
                         android:textAlignment="center"
                         android:textSize="16sp"
-                        android:textStyle="bold" />
+                        />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/txt_login"
